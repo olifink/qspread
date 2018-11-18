@@ -1,7 +1,7 @@
 * Spreadsheet					      29/11-91
 *	 - configuration information (german)
 *
-	 include  win1_mac_multiconfig02
+	 include  win1_mac_multiconfig
 	 include  win1_mac_olicfg
 	 include  win1_keys_wstatus
 	 include  win1_keys_k
@@ -54,6 +54,10 @@
 	 cfgcode  emtz,wsi.avbl
 	 cfgcode  emts,wsi.avbl
 	 cfgcode  sepr,{','}
+	 cfgcode  def,wsi.slct
+	 cfgcode  mainc,0	    ; white/green
+	 cfgcode  gridc,3	    ; black/green
+	 cfgcode  butnc,0	    ; white/green
 	 cfgcode  sabk,wsi.avbl
 	 cfgcode  stcr,wsi.slct
 	 cfgcode  cgap,wsi.slct
