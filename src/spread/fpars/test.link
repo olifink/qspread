@@ -1,0 +1,7 @@
+data 1024
+program win1_spread_fpars_test_bin
+input win1_spread_fpars_test_rel
+library win1_spread_fpars_lib
+library win1_util_strg_lib
+library win1_util_oli_lib
+library win1_uti_lib

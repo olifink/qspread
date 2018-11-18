@@ -1,0 +1,143 @@
+                        FENSTERBEZOGENE FUNKTIONEN
+                        --------------------------
+
+FENSTER BEWEGEN
+---------------
+In der linken oberen Ecke des Fensters findet man ein Bildchen von zwei
+sich ‡berlappenden Rechtecken. Dies soll die Beweg-Funktion darstellen,
+die es erm„glicht ein Fenster, so wie es gerade ist, zu einer anderen
+Position auf dem Bildschirm zu verschieben. Wenn sie den Zeiger ‡ber
+dieses Bildchen bewegen, und dann einen HIT ausf‡hren (bitte nicht
+w„rtlich nehmen und um sich schlagen, sondern einfach die Leertaste auf
+der Tastatur oder die linke Maustaste dr‡cken), ver€ndert sich ihr
+Zeiger in genau dieses Symbol, das Sie dann herumbewegen k„nnen. Wenn
+Sie dann nochmals HITten, wird ihr Fenster an diese Position bewegt
+(vorausgesetzt es ist genug Platz, um das Fenster ganz (!)
+darzustellen) und Sie k„nnen dort normal weiterarbeiten.
+
+
+FENSTERGR¤œE VER NDERN
+----------------------
+Die zweite Fensterfunktion, die direkt rechts neben der Bewegfunktion
+liegt und wie zwei ineinander-gesetzte Rechtecke aussehen, ist die
+Gr„œenfunktion, mit der man die Gr„œe des Gesamtfensters stufenlos
+ver€ndern kann. Wenn Sie nach einem HIT den Gr„œenzeiger in Richtung
+des Fensterinneren (also nach recht und/oder unten) bewegen, wird sich
+das Fenster nach einem festlegenden HIT entsprechend vergr„œern;
+Bewegungen vom Fenster weg (nach oben/links) werden das Fenster
+entsprechend vergr„œern. §berfl‡ssigerweise sollte sich noch erw€hnen,
+daœ man das Fenster nicht gr„œer machen kann, als der Bildschirm ist
+(logisch), und auch nicht kleiner, als daœ alle weiteren Fenster noch
+bequem hineinpassen. Kleiner Tip: um ein Fenster wieder auf die volle
+Gr„œe des Bildschirms aufzuziehen reicht ein DO auf das Beweg-Bildchen.
+
+
+ANWENDUNG SCHLAFENLEGEN
+-----------------------
+Die letzte Funktion ist eine Comic-artige Darstellung vom Schlafen, und
+genau das macht die Funktion auch mit dem Programm: Sie legt es
+schlafen... Was heiœt jetzt das schon wieder? Nun, es bedeutet, daœ das
+Fenster zeitweise vom Bildschirm entfernt wird, und nur noch als
+kleiner Knopf (der sogenannte Button) erscheint, der keinem etwas
+zuleide tut (f‡r den Fall, daœ Sie das geniale QPac2 besitzen wird der
+Button in den Rahmen gesetzt, damit Sie ihn leichter wiederfinden).
+Wenn Sie sich dann entschlieœen, daœ Sie mit dem Programm wieder
+arbeiten wollen, m‡ssen Sie es durch ein DO (das ist die Enter-Taste
+oder die rechte Maustaste) aufwecken, worauf das Fenster pflichtbewuœt
+wieder zum Vorschein kommt.
+
+
+§BER ... QSpread
+----------------
+Eine Funktion, die eigentlich nicht zu den fensterbezogenen Funktionen
+geh„rt, dennoch aber neuerdings Standard in Zeigerprogrammen ist, ist
+die §ber ... Funktion.  Diese erlaubt es ihnen, sich auf nette und
+einfache Weise ‡ber den aktuellen Versionsstand ihrer Anwendung zu
+informieren.
+
+
+                                BEFEHLE
+                                -------
+
+F1 HILFE
+--------
+Die Hilfefunktion dient dazu, Sie immer mit aktuellen Informationen zu
+versorgen. Sie erhalten ein Men‡, daœ es Ihnen jetzt erm„glicht, Hilfe
+‡ber einen bestimmten Bereich des Programms auszuw€hlen. Die
+Hilfedateien m‡ssen daf‡r in der richten Sprache im entsprechended
+Verzeichnis vorliegen.
+
+
+F2 DATEI
+--------
+Die Dateifunktion (F2) beinhaltet alle Befehle, die irgendwie mit Dateien oder
+Druckausgabe zu tun haben. Hier k„nnen Sie auch ein neues Arbeitsblatt einrichten
+und Einstellungen f‡r die Druckausgabe vornehmen.
+
+
+F3 GITTER
+---------
+Die Gitterfunktion (F3) birgt alle Befehle, die das Gitter ver€ndern
+oder sonst Auswirkungen auf das ganze Arbeitsblatt haben. Hier finden
+Sie auch den endg‡ltigen Ausgang, wenn Sie Schluœ machen wollen.
+
+
+F4 ZELLE
+--------
+Die Zelle Funktion (F4) h€lt Kommandos f‡r die Ver€nderung einer oder
+mehrerer Zellen bereit. Diese Befehle beziehen sich immer auf den
+momentan aktiven Bereich des Arbeitsblattes.
+
+
+F5 STATUS
+---------
+Die Statusfunktion (F5) erlaubt es, Feineinstellungen an der
+Arbeitsweise von QSpread vorzunehmen, die das Verhalten anderer
+Funktionen beeinflussen.
+
+
+F6 FN's
+-------
+Funktionen (F6) birgt eine kurze Liste der vom Benutzer oft gebrauchten
+Formeln, sozusagen eine Art Zwischenablage f‡r Formeln, wenn man wie
+ich zu faul ist, Sie jedesmal neu einzutippen.
+
+
+F8 ALLE
+-------
+Die Alle Funktion (F8) ist eine kleine Besonderheit, ein einziger
+Befehl, den man schnell erreichen kann, und der festlegt, ob man alle
+Zellen des momentanen Bereichs oder nur eine Zelle davon Bearbeiten
+m„chte.
+
+
+F9 WIEDER
+---------
+Diese Funktion wiederholt die letzte Suche, die im Gitter Men‡ unter
+ŸFinden' eingestellt wurde.
+
+
+(+) SUMME
+---------
+Dieses andere komische Zeichen (Mathematiker kennen es: das Summen
+Zeichen), ist auch eine Einzelfunktion, die die h€ufig vorkommende
+Summenberechnung in sich birgt... mehr dazu auch sp€ter.
+
+
+(_) LINIE
+---------
+Weiterhin gibt es eine Linienfunktion (neben dem Summenzeichen, und
+durch den Unterstrich durch Tastendruck aktivierbar) bringt einen
+Trennstrich in der L€nge des aktuellen Blockes in eine Zelle... aber
+auch hierzu sp€ter mehr.
+
+
+F10 GEHE ZU
+-----------
+Am rechten Ende der Zeile ist die Gehe-zu-Funktion (F10). Dort wird
+normalerweise der aktuelle Bereich angegeben. Auœerdem wird hier bei
+zeitaufwendigeren Arbeiten der Name der Zelle angegeben, die gerade
+bearbeitet wird, damit Sie wissen, wo QSpread gerade ist. Wenn Sie
+diese Funktion aber ausf‡hren, k„nnen Sie den Namen einer Zelle
+eingeben, die oben links im Arbeitsfenster dargestellt werden soll.
+Damit k„nnen Sie schnell im Arbeitsblatt herumspringen.

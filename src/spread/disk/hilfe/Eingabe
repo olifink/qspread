@@ -1,0 +1,95 @@
+ZAHLENEINGABE
+------------- 
+Eingaben erfolgen generell ‡ber die Formelzeile, (TAB) Sie erinnern
+sich. Zahlen k„nnen der Einfachheit halber direkt, d.h. ohne explizite
+Anwahl der Formelzeile eingegeben werden, wenn der Zeiger im
+Gitterfenster steht.
+
+Das heiœt f‡r Sie, daœ Sie jetzt einfach die Ziffer 4 und 2 eintippen.
+Nachdem Sie die 4 eingetippt haben merkt QSpread, daœ Sie eine Zahl
+eingeben wollen, und bringt diese Zahl direkt in die Eingabezeile. Um
+die Eingabe zu best€tigen, m‡ssen Sie dann nur noch Enter dr‡cken.
+Jetzt sehen Sie, daœ die Zahl 42.00 in die aktuelle Zelle gebracht
+wurde. (Wen es jetzt schon interessiert: die Nachkommastellen sind nur
+ein Ausgabeformat, das Sie nat‡rlich €ndern k„nnen. Mehr dazu sp€ter!)
+
+
+EINGABE VON LISTEN
+------------------
+Dazu w€hlen Sie wie oben beschrieben den Block als Bereich an, in den
+Sie die Daten eingeben wollen. Nach der Eingabe einer Zahl,
+abgeschlossen mit ENTER, bereitet QSpread selbstst€ndig die n€chste
+Zelle zur Eingabe vor, und erwartet sie in der Eingabezeile. Sollten
+Sie es sich anders ‡berlegt haben und m„chten die Eingabe beenden,
+dr‡cken Sie die ESCape Taste.
+
+
+MEHRFACHEINGABE
+---------------
+Ab und zu ist es auch n„tig, die gleiche Zahl (oder Formel, oder Text)
+in einen ganzen Bereich einzugeben. Hierzu dient die Alle-Funktion
+(F9). Ist sie aktiv, wird der Inhalt, den Sie jetzt eingeben, f‡r alle
+Zellen im aktuellen Block verwendet. Dies ist oft hilfreich in
+Verbindung mit den Funktionen col() oder row(), die je nach
+Zell-Position im Arbeitsblatt einen anderen Wert liefern.
+
+
+FORMELEINGABE
+-------------
+Sie k„nnen aber nicht nur Ziffern direkt eingeben, sondern auch Text
+und Formeln, wobei ein QSpread so intelligent gemacht wurde, daœ es
+selbstst€ndig zwischen Text, Formeln und Zahlen unterscheidet und das
+passende Format ausw€hlt. Das heiœt, daœ jetzt direkt drauf los tippen
+k„nnen, und auch Text ohne Anf‡hrungszeichen (") am Anfang eintippen
+k„nnen. QSpread versucht zuerst die Eingabe als Zahl bzw. Formel zu
+interpretieren. Sollte dies Fehlschlagen stellt es selbst ein
+Anf‡hrungszeichen voran und nimmt in diesem Fall eine Texteingabe an.
+(QSpread ‡bernimmt auch die Formel als Text, wenn sich ein Fehler
+ergeben sollte, wie sqrt(-1) ). Sie k„nnen QSpread immernoch zwingen,
+eine Eingabe gleich als Text zu interpretieren, indem Sie wie gewohnt
+ein Anf‡hrungszeichen voranstellen.
+
+
+TEXTEINGABE
+-----------
+Um einen beliebigen Text in die aktuelle Zelle einzugeben, muœ man, 
+vorausgesetzt der Zeiger steht im Gitterfenster, nichts weiter tun als
+den gew‡nschten Text einzutippen. Erkennt QSpread ihre Eingabe als Text
+an, stellt es selbstst€ndig ein Anf‡hrungszeichen voran. Will man Text
+erzwingen, stellt man es einfach selbst voran und nimmt QSpread damit
+die M„glichkeit, die Eingabe als Zahl oder Formel zu verstehen.
+
+Der Text endet offen, das heiœt, Sie brauchen am Ende kein
+Anf‡hrungszeichen mehr anzustellen. Genauso haben weitere
+Anf‡hrungszeichen in Text keinen Einfluœ, sondern z€hlen wie Buchstaben
+zu ihrem Text. Wie immer wird die Eingabe durch Enter abgeschlossen.
+
+
+SONDERTASTEN W HREND DER EINGABE
+--------------------------------
+Den Cursor in der Eingabezeile k„nnen Sie, wie Sie es unter der
+Zeigerumgebung gewohnt sind, mit den Steuerungstasten nach links und
+rechts bewegen. Atari Besitzer haben ab dem Level E der
+Emulator-Treiber erweiterte Funktionen beim Editieren.
+
+Die ESCape Taste bricht die Eingabe ab und ver€ndert den Inhalt der
+Zelle nicht. Sollten Sie sich in einer Listeneingabe befinden wird die
+komplette Eingabe abgebrochen, Werte die schon in die Liste eingegeben
+wurden bleiben erhalten.
+
+Die Steuerungstaste nach-oben hat in der Eingabezeile von QSpread eine
+besondere Funktion. Wird Sie gedr‡ckt, h€lt das Programm die Eingabe
+kurzzeitig an und zeigt einen besonderen Zeiger, das Fragezeichen.
+Dieses erinnert Sie daran, daœ Sie eine Zelle im Arbeitsblatt
+identifizieren k„nnen, deren Namen dann in die Eingabezeile ‡bernommen
+wird. Also wenn Sie in der Eingabezeile haben:
+
+        12+3*     (hinter dem * steht jetzt der Cursor)
+
+und dr‡cken nun die Cursor-nach-oben Taste, so erscheint der
+Fragezeichen-Zeiger im Gitter. Gehen Sie nun damit auf eine Zelle mit
+irgendeinem Wert und HIT'ten diese, dann erscheint in der Eingabezeile:
+
+        12+3*E6  (wenn E6 zuf€llig die gew€hlte Zelle war)
+
+und die Eingabe kann normal fortgesetzt werden.

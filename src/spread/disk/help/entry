@@ -1,0 +1,94 @@
+ENTERING NUMBERS
+----------------
+Let's start with the easy task of entering a number into a cell, say
+for example, 42. First of all, select an empty cell as the current
+cell. As you certainly remember, entries are made in the entry line, on
+top of the grid. All numbers can be entered directly when the pointer
+is in the grid window, ie. without selecting the entry line explicitly.
+
+That means for you that you just have to press the digits 4 followed by
+2. When first digit is entered, QSpread recognizes that you wish to
+enter a number and activates the entry line itself. To confirm the
+entry, press ENTER. Now you will see that the number 42.00 is in the
+current cell. (If someone is interested: the fractional part of the
+number is just a display format that can be changed. Details follow.)
+
+
+ENTERING LISTS OF DATA
+----------------------
+As it is a usual procedure to enter columns of data into some following
+cells, there is an easy way in QSpread to enter lists of data (numbers,
+text or formulae) without having to select each cell on it's own.
+
+First select the block, as described above, as the current block. After
+the first number is entered, QSpread prepares the next cell and
+requests entry in the entry line. In case you made up your mind not to
+enter any more data, just press the ESCape key.
+
+
+MULTIPLE CELL ENTRY
+-------------------
+Sometimes it is quite useful to enter the same data (numbers, text or
+formulae) in more cells (ie. in a block). That's what the All command
+(F9) is for. When it is active, the one data entered will be used for
+all cells in the current block. This is interesting when making use of
+special functions like col() or row(), that result in different values
+according where they are used in the grid.
+
+
+ENTERING FORMULAE
+-----------------
+You can not only enter number starting with digits directly, but
+formulae and text alike, where QSpread was made intelligent in the way
+that it recognizes automatically, whether the entry is a number, a
+formula or text, you don't even need to start text with an quotation
+mark. Just type in the word you like and QSpread does the rest. In fact
+at first, QSpread tries if it can get any value out of your entry. If
+this fails, it assumes that it is a text and inserts a quotation mark
+automatically. This means also, that errors in formulae like eg.
+sqrt(-1) appear as text and can be easily edited. Of course, you can
+still force QSpread to take your entry directly as text if you start as
+usual with a leading quotation mark.
+
+
+TEXT ENTRY
+----------
+To enter a simple text into a cell, you simply type in the characters,
+but make sure your pointer is inside the grid window. QSpread tries to
+interpret it, and, if it finds out that is was meant to be text, it
+preceeds it with an quotation mark. If you want to force QSpread to
+assume text, this is done by a leading quotation mark that is followed
+by the actual text. As you see, it is not necessary to activate the
+entry line explicitly, you just type in the " and the QSpread knows
+what to do. The text has an open end, ie. a closing quotation mark is
+not required. Any quotation marks inside the text will not be affected,
+they count like characters. As usual, the entry has to be confirmed by
+enter.
+
+
+SPECIAL KEYS DURING ENTRY
+-------------------------
+The cursor in the entry line can be used like in just any other pointer
+based program. Atari users with the driver level E have some more
+extended functions during editing.
+
+The ESCape key breaks out of the entry mode and will not change the
+contents of the current cell. In list entry mode, the complete entry is
+stopped, although values that are already entered are kept.
+
+The cursor key up has a special meaning in the QSpread entry line. When
+it is pressed, QSpread temporarily stops entry mode and presents a
+special pointer, the question mark. This reminds you that you have to
+identify a cell, the name of it will be appended to the current entry
+line and entry mode is resumed. For example, if you have the following
+in you entry line:
+
+          12+3*               (the cursor follows the *)
+
+and press the cursor-up key now, you see the question mark pointer in
+the grid. Now move the pointer to any cell with a value and HIT it. Now
+you will see in the entry line:
+
+          12+3*E6             (if E6 was the cell you just HIT)
+
+Editing continues as normal.

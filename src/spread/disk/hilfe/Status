@@ -1,0 +1,133 @@
+REIHENFOLGE
+-----------
+Die Reihenfolge, in der die Daten eingegeben und berechnet werde, kann
+zwischen Zeilen- und Spaltenweise umgeschaltet werden.
+
+
+NACH EINGABE RECHNEN
+--------------------
+Das komplette Gitter kann nach jeder Eingabe durchgerechnet werden.
+Siehe auch: Gitter-Rechnen. Die vorgeschlagene Einstellung kann
+dauerhaft mit einem Anpassungsprogramm eingestellt werden.
+
+
+CURSORBEWEGUNG NACH EINGABE
+---------------------------
+Der Cursor kann nach einer Eingabe auf der aktuellen Zelle bleiben (Nein),
+abw€rts oder nach rechts gehen.
+
+
+KOPIE BEIM SICHERN
+------------------
+Sollte beim Sichern schon eine Datei mit dem angegebenen Namen
+vorhanden sein, kann, wenn diese Funktion aktiviert ist, eine Kopie
+dieser Datei mit der Endung _bak erzeugt werden. Eine schon
+existierende Sicherheitskopie wird dabei ersetzt. Die vorgeschlagene
+Einstellung kann dauerhaft mit einem Anpassungsprogramm eingestellt
+werden.
+
+
+BEST TIGUNGSNACHFRAGE
+---------------------
+Wenn angew€hlt wird vor jedem gr„œeren destruktiven Vorgang (groœen
+Block l„schen, Datei ‡berschreiben) nachgefragt.
+
+
+LOKALE VERZEICHNISSE
+--------------------
+Hiermit kann das lokale Datenverzeichnis f‡r QSpread Dateien ver€ndert
+werden, wie auch die Verzeichnisse, in denen QSpread nach Transfer und
+Druckerfilter sucht. Auch das Verzeichnis, in dem diese Hilfe-Dateien
+liegen, wie hier eingestellt.
+
+
+TOOLBAR
+-------
+Zeigt den Toolbar mit den Symbolen an wenn angew€hlt.
+
+
+ZAHLEN GLOBAL
+------------- 
+Die hier eingestellten Werte gelten f‡r alle neu eingegebenen Zahlen.
+Hier k„nnen Sie die Anzahl Nachkommastellen einstellen, die angezeigt
+werden sollen. Hat ein Wert mehr Nachkommastellen, so werden diese ohne
+Rundung abgeschnitten, hat er weniger oder keine Nachkommastellen, so
+werden die folgenden Ziffernstellen mit Nullen aufgef‡llt, bis die
+eingestellte L€nge der Nachkommastellen erreicht ist. G‡ltige Werte
+reichen hier von 0 bis 8 Stellen.
+
+Negative Zahlen werden ‡blicherweise durch ein vorangestelltes
+Minuszeichen gekennzeichnet, bei positiven Zeichen f€llt dieses
+logischerweise weg. Mit der Funktion "Vorzeichen immer" wird immer ein
+Vorzeichen vorangestellt, also bei positiven Werten ein Plus-Zeichen.
+
+Alternativ dazu gibt es die M„glichkeit, mit der "Klammern wenn
+negativ" Funktion, negative Zahlen in Parenthese zu setzten. F‡r
+positive Zahlen werden die Klammern nicht dargestellt, sondern durch
+Leerzeichen ersetzt.
+
+Die Funktion "Trennung einf‡gen" teilt den Ganzzahlenteil der Zahl
+(also die Vorkommastellen) zu besseren Lesbarkeit in Bl„cken zu je drei
+Ziffern durch Kommata (,) ab. Mit einem der Anpassungsprogramme l€œt
+sich zus€tzlich zwischen Kommata und Hochkomma (') w€hlen.
+
+F‡r den deutschsprachigen Raum, der ja bekanntlich nicht keinen
+Dezimalpunkt, sondern nur das Dezimalkomma kennt, daf‡r aber die
+Zifferntrennungen mit einem Punkt kennzeichnet, gibt es die Funktion
+"Deutsche Darstellung", die genau diese Anpassungen am Zahlenformat
+vornimmt.
+
+
+W HRUNGSSYMBOL GLOBAL
+---------------------
+Hiermit werden alle neuen numerischen Werte mit dem neuen
+W€hrungssymbol versehen. Es steht vor der Zahl und erscheint immer.
+
+
+ZAHLENAUSRICHTUNG GLOBAL
+------------------------
+Hiermit werden alle neuen numerische Daten global rechts- bzw.
+linksb‡ndig dargestellt. 
+
+
+ZAHLEN FORMATIEREN
+------------------
+Das Formatieren der Zahlen kann unterdr‡ckt werden. Die Werte
+erscheinen dann in Flieœkommadarstellung. Die vorgeschlagene
+Einstellung kann dauerhaft mit einem Anpassungsprogramm eingestellt
+werden.
+
+
+KOMMASTELLEN RUNDEN
+-------------------
+Die Genauigkeit der Ergebnisse kann hier auf die entsprechenden
+Nachkommastellen eingestellt werden. Es kann angegeben werden, auf
+wieviel Stellen genau QSpread rechnen soll, und ab wann Rundungen
+vorgenommen werden. Die Rundungen betreffen die Ergebnisse von
+Berechnungen, und man sollte der Vollst€ndigkeit halber bemerken, daœ
+ab 0.5 (inkl.) aufgerundet wird
+
+
+LEERE ZELLE BEI NULL
+--------------------
+Eine Zelle mit dem numerischen Wert Null kann leer bleiben. Dies
+betrifft nur die Darstellung, der Wert Null bleibt immer erhalten. Die
+vorgeschlagene Einstellung kann dauerhaft mit einem Anpassungsprogramm
+eingestellt werden.
+
+
+LEER WENN GLEICHER WERT
+-----------------------
+Eine Zelle die den gleichen numerischen Wert wie die Zelle dar‡ber
+besitzt, kann leer bleiben. Dies betrifft nur die Darstellung, der Wert
+bleibt immer erhalten. Diese Funktion ist speziell f‡r Zahlenreihen
+gedacht, wo es darauf ankommt m„gliche  nderungen schnell zu erkennen.
+Es erscheinen also immer nur Werte, die sich im Vergleich zu der
+dar‡berliegenden Zelle ver€ndert haben. Die vorgeschlagene Einstellung
+kann dauerhaft mit einem Anpassungsprogramm eingestellt werden.
+
+
+ZIFFERNBEZEICHNUNGEN
+--------------------
+Hier lassen sich ‡ber ein weiteres Fenster die Namen f‡r die Ziffern,
+die in der digit$()-Funktion verwendet werden, €ndern.

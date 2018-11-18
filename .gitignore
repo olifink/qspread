@@ -1,0 +1,4 @@
+*.lib
+*.rel
+*.map
+**/lib

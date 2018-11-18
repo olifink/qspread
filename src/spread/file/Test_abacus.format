@@ -1,0 +1,25 @@
+_ABA File format
+
+         dc.l     'ABM1'
+         dc.w     $0176
+         dc.w     ?
+         dc.w     $0020
+         dc.b     nr_of_columns_used-1
+         dc.b     nr_of_rows_used-1
+         dc.w     $3FFE
+
+         dc.b     0,1,3
+
+         ds.b     256*0    ; Zeilen
+         ds.b     64*0b    ; Spalten
+
+0151     dc.b     1        ; auto calculate on input
+0152     dc.b     0        ; blank if zero
+0153     dc.b     1        ; calculation order (0=column / 1=row)
+0154     dc.b     0        ; display width (0=80)
+0155     dc.b     1        ; form feed on printer
+0156     dc.b     0        ; gaps between lines
+
+0157     dc.b     66       ; lines per page
+0158     dc.b     '$'      ; monetary symbol
+0159     dc.b     80       ; printer paper width

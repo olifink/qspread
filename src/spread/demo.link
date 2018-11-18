@@ -1,0 +1,109 @@
+* Spreadsheet					      29/11-91
+GST
+
+Dir win1_spread_
+
+program QSpreadDemo_#0
+
+data 28k
+
+filetype 1
+
+ABS
+
+Section start				; normal job header, bra.s goes to
+SECTION relocation			; the relocation code, which processes
+SECTION reltable			; the relocation table, and then
+SECTION init				; branches to the program start
+section sprite
+section text
+section config
+section menu
+section utility
+section prog
+section string
+section pars
+section gen_util
+section wut
+section language
+
+
+RELOC	reltable			; this tells the linker which section
+					; to put the relocation table in
+common dummy
+
+!+keys
+
+input access_rel
+input act_lib
+input act_demo_main_rel
+input #0_demo_cfg_rel
+input help_#0_rel
+input cellsel_rel
+input cmd_cell_rel
+input cmd_file_rel
+input cmd_grid_rel
+input cmdact_rel
+input columns_rel
+input convert_rel
+input dma_rel
+input echo_rel
+input externfn_rel
+input filter_rel
+input filter_print_rel
+input find_rel
+input findref_rel
+input formular_rel
+input fpars_entry_rel
+input fpars_itemscn_rel
+input fpars_action_rel
+input goto_rel
+input init_rel
+input macro_rel
+input main_grid_rel
+input main_index_rel
+input main_objects_rel
+input main_setup_rel
+input main_demo_toolapp_rel
+input main_window_rel
+input main_wsiz_rel
+input modes_rel
+input monitor_rel
+input number_rel
+input order_rel
+
+PC				; pre- and post must be pc-relative
+
+input	pre_post_rel
+
+ABS				; from here on absolute
+
+input protect_rel
+input pwdth_rel
+input redraw_rel
+input rows_rel
+input start_rel
+input strgfn_rel
+input string_rel
+input #0_demo_text_rel
+input variable_rel
+input version_rel
+
+input wdef_lib
+input wdef_files_rel
+input wdef_grid_rel
+input wdef_cell_rel
+
+PC				; libraries must be compiled pc-relative again
+
+input win1_wu_wut_radio_rel
+input win1_wu_wut_gwman_rel
+library sprites_lib
+library win1_util_strg_lib
+library win1_util_oli_lib
+library win1_uti_lib
+library win1_util_gut_lib
+library win1_util_menus_lib
+library win1_util_sprite_lib
+library win1_util_icon_lib
+library win1_lang_#0_lib

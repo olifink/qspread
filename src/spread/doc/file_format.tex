@@ -1,0 +1,110 @@
+\t QSpread file format
+
+\j This is the format of a spreadsheet file saved with QSpread. The
+same format has to be provided the QSpread when loading through import
+filters.
+
+\f
+         *
+         * fixed format
+         * (file header)
+         *
+         sfh_init equ      $00               ; w initialisation code
+         sfh.init equ      $4afc
+         sfh_id   equ      $02               ; l application id
+         sfh.id   equ      'SPRD'
+         sfh_vers equ      $06               ; l version of file format
+         sfh.vers equ      '1.00'
+         sfh_cols equ      $0a               ; w nr of columns (or 0)
+         sfh_rows equ      $0c               ; w nr of rows (or 0)
+         sfh.len  equ      $0e               ; header length
+
+
+\j If the spreadsheet size is given as -1/-1, the current layout size
+will be used when loading. The is only used when importing though filters,
+to free the filter job from the work to find out the size of the imported file.
+Any cells which will fall out of the current size will are therefore not laoded.
+
+\f
+         *
+         * column width format
+         sfw_wdth equ      $00      ; column width in characters
+
+
+\j The file header information is immediatly followed with list of
+the column width. There must be an entry for each column in the sheet.
+Entries are allowed to have a minimum of 1 and a maximum of 60 chars.
+If the first entry is given as -1, all columns will have the configured
+default column width.
+
+\f
+
+         *
+         * cell format
+         sfc_cnr  equ      $00               ; l cell number (col|row)
+         sfc_fwrd equ      $04               ; w cell format word
+         sfc_form equ      $06               ; s formular standard string
+
+\j The column width information is followed by the cell information.
+The format word is defined bewlow. The order at loading time is not
+important, at saving time it is always by row.
+
+\f
+
+         *
+         * format word (numeric) definition
+         fw..dp   equ      0                   bit 0..4 decimal places
+         fw..germ equ      4                   german represtentation
+         fw..sign equ      5                   always sign number
+         fw..brac equ      6                   parenthesis, when negative
+         fw..sepr equ      7                   insert seperators
+         fw..just equ      10                  clear right just./ set left just.
+         fw..strg equ      11                  exclusivly set for string
+         fw..msym equ      12                  bit 12..16 monetary symbol
+
+         *
+         * reserved bits in string format
+         fw..cont equ      0                   set for continuation string
+         fw..bold equ      1                   set if bold on output
+         fw..ital equ      2                   set if italic on output
+         fw..undl equ      3                   set if underlined on output
+
+
+         *
+         * environment codes
+         sfe_id   equ      $00               ; w environment code id
+         sfe.id   equ      -1
+         sfe_code equ      $02               ; w environment code word
+         sfe.nfmt equ      $02               ;        global numeric format
+         sfe.sfmt equ      $04               ;        global string format
+         sfe.fmtn equ      $06               ;        format numbers on/off
+         sfe.ordr equ      $08               ;        entry order
+         sfe.auto equ      $0a               ;        auto calculation
+         sfe.zero equ      $0c               ;        empty when zero
+         sfe_val  equ      $04               ; w environment value
+
+
+\j Cell and environment format can be freely mixed, and the most recent
+entry is the one action taken.
+
+
+\t Printer driver text meta lanuage
+
+\j To allow great fexibility in printer output, QSpread uses a defined
+printer command meta language. This language can't be printed direcly,
+but has to be filtered though a special job, which translates the defined
+meta codes to printer codes.
+
+\f
+         *
+         * basic printer meta commands
+         * (this is the minimal subset to be supported by any driver)
+         *
+         cmd_meta equ      27
+         cmd_init equ      'init'
+         cmd_text equ      'text'
+         cmd_newl equ      'newl'
+         cmd_newp equ      'newp'
+         cmd_bold equ      'bold'
+         cmd_ital equ      'ital'
+         cmd_undl equ      'undl'

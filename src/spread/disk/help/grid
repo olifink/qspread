@@ -1,0 +1,90 @@
+RECALCULATE GRID
+----------------
+This menu entry recalculates the complete sheet. This is important for
+formulae having cell references, whose result is determined by other
+cell values. Calculation is either done by column or by row according
+to the selections in the status menu).
+
+
+CHANGE COLUMN WIDTH
+-------------------
+With this the width of a column can be changed. This function operates
+on all column in the current range. The maximum width is 60 characters,
+the minimum is 1 character. If there are any numeric results, which
+wouldn't fit into the column, this cell is filled with stars (*). Text
+is automatically adjusted. The initial column width can be changed with
+a configuration program.
+
+
+PERFECT COLUMN WIDTH
+--------------------
+Adjusts the column width to the width of the largest cell in the selected
+range.
+
+
+SELECT COLUMN
+-------------
+This function marks the column where the current cell is in  as the new
+current range.
+
+
+INSERT COLUMNS
+--------------
+This function puts QSpread in the insert column mode. The insert-
+pointer appears and after a hit QSpread asks for the number of columns
+to be inserted. Everything that war right of the starting column is
+moved by the requested number of column to the right, producing new
+empty columns there. Because the sheets size is fixed, the last column
+in the sheet is removed. References in formulae are updated to refer to
+the correct cell.
+
+
+DELETE COLUMNS
+--------------
+The delete-column-pointer appears after the selection of this function
+and when the according column is hit QSpread requests the number of
+columns to be deleted. After a confirmation the cells will be removed
+from the grid and everything that was on their right will be moved to
+the now empty position. At the end the sheet, a blank columns will be
+inserted. References in formulae are updated to refer to the correct
+cell.
+
+
+SELECT ROW
+----------
+This function marks the row where the current cell is in  as the new
+current range.
+
+
+INSERT ROWS
+-----------
+This function puts QSpread in the insert row mode. The insert-pointer
+appears and after a hit QSpread asks for the number of rows to be
+inserted. Everything that war below the starting row is moved down by
+the requested number of rows, producing new empty rows there. Because
+the sheets size is fixed, the last column in the sheet is removed.
+References in formulae are updated to refer to the correct cell.
+
+
+DELETE ROWS
+-----------
+The delete-row-pointer appears after the selection of this function and
+when the according row is hit QSpread requests the number of rows to be
+deleted. After a confirmation the cells will be removed from the grid
+and everything that was on below will be moved up to the now empty
+position. At the end a the sheet, blank rows will be inserted.
+References in formulae are updated to refer to the correct cell.
+
+
+SEARCH ..
+---------
+This function allows to search for specific cell data, or parts of
+the formulae. The search can be upwards or downwards, where the actual
+order in which the cells are scanned depends on the order given for
+entry and recalculation in the Status menu. The F9 Again function
+repeates the last search.
+
+
+QUIT QSPREAD
+------------
+This finally removes QSpread and the current sheet from memory.

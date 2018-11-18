@@ -1,0 +1,17 @@
+#
+# Standard window creator file
+# Project  : spread
+# Window   : about
+# Update   : Sat,1993 Feb 20 17:03:37
+#
+menu=abou
+scal=0
+size=150,100
+item=
+selk=0
+flag=7,flag
+flgt=QSpread
+cmds=0
+info=1
+appl=0
+end.

@@ -1,0 +1,196 @@
+; RTF to printer filter macros                        03/06-92 O.Fink
+;
+        nolist
+
+;       printer name
+;       prtcmd  xxxx
+;
+; cde_xxxx qstrg xxxx
+;
+
+         include  win1_keys_err
+         include  win1_keys_qdos_sms
+         include  win1_keys_qdos_io
+         include  win1_keys_qdos_ioa
+         include  win1_mac_oli
+
+da_inch  equ      $00
+da_outch equ      $04
+da_rtf   equ      $08
+
+printer  macro    name
+         qdosjob  {RTF to [name]},start
+         qstrg    {written 1992 by O.Fink}
+start
+         adda.l   a4,a6
+
+         moveq    #err.ichn,d0               ; check for two channels
+         move.w   (a7),d1
+         subq.w   #2,d1
+         bne      kill
+
+         move.l   2(a7),da_inch(a6)
+         move.l   6(a7),da_outch(a6)
+
+rd_loop
+         bsr      rd_byte                    ; fetch a byte
+         bne      close                      ; ..eof?
+
+         cmp.b    #'\',d1                    ; was it a command?
+         beq      rd_cmd
+         cmp.b    #' ',d1                    ; space?
+         beq      rd_loop                    ; ..yes, next character
+         cmp.b    #10,d1                     ; linefeed?
+         beq      rd_loop                    ; ..yes, next character
+
+         bsr      snd_byte                   ; send byte to output channel
+         bne      kill                       ; ..any other error
+         bra      rd_loop
+
+;
+; close input and output channel
+close
+         move.l   da_inch(a6),a0
+         moveq    #ioa.clos,d0
+         trap     #do.ioa
+         move.l   da_outch(a6),a0
+         moveq    #ioa.clos,d0
+         trap     #do.ioa
+
+;
+; remove current job
+kill
+         move.l   d0,d3
+         moveq    #sms.frjb,d0
+         moveq    #sms.myjb,d1
+         trap     #do.sms2
+
+
+;
+; read an rtf command
+rd_cmd
+         lea      da_rtf(a6),a4              ; running command pointer
+         move.l   #$20202020,(a4)
+cmd_lp
+         bsr      rd_byte
+         bne      close
+         cmp.b    #' ',d1
+         beq      cmd_ok
+         cmp.b    #10,d1
+         beq      cmd_ok
+         cmp.b    #39,d1
+         beq      cmd_hex
+         move.b   d1,(a4)+
+         bra      cmd_lp
+
+cmd_ok
+         move.l   da_rtf(a6),d1              ; command read
+         ori.l    #$20202020,d1              ; make it lower case
+         lea      rtf_cmds,a1
+cmp_lp
+         move.l   (a1)+,d0
+         bmi      rd_loop                    ; not found... read normal
+         sub.l    d1,d0
+         beq      cmd_fnd
+         adda.w   #4,a1
+         bra      cmp_lp
+
+cmd_fnd
+         adda.l   (a1),a1                    ; absolute code sequence
+         bsr      snd_strg
+         bne      kill
+         bra      rd_loop
+
+cmd_hex
+         lea      da_rtf(a6),a1
+         bsr      rd_byte                    ; read high nibble
+         bne      kill
+         move.b   d1,(a1)
+         bsr      rd_byte                    ; read low nibble
+         bne      kill
+         move.b   d1,1(a1)
+         move.w   (a1),d1
+         bsr      cnv_hex
+         bne      rd_loop
+         bsr      snd_byte
+         bra      rd_loop
+
+cnv_hex  subr     d2/d3
+         ori.w    #$2020,d1
+         move.b   d1,d2
+         bsr      hex_val
+         bne      hex_exit
+         move.b   d2,d3
+         lsr.w    #8,d1
+         move.b   d1,d2
+         bsr      hex_val
+         bne      hex_exit
+         mulu     #$10,d2
+         add.b    d2,d3
+         move.b   d3,d1
+         ext.w    d1
+         moveq    #0,d0
+hex_exit
+         subend
+
+hex_val  subr     a0/d1/d3
+         moveq    #err.orng,d0
+         lea      hex_tab,a0
+         moveq    #0,d1
+val_lp
+         move.b   (a0,d1.w),d3
+         bmi      val_exit
+         sub.b    d2,d3
+         beq      val_fnd
+         addq.w   #1,d1
+         bra      val_lp
+val_fnd
+         move.b   d1,d2
+         moveq    #0,d0
+val_exit
+         subend
+
+hex_tab  dc.b     '0123456789abcdef',-1
+
+;
+; read a byte from stdin
+rd_byte  subr     a0-a1/d3
+         moveq    #iob.fbyt,d0
+         moveq    #forever,d3
+         move.l   da_inch(a6),a0
+         trap     #do.io
+         tst.l    d0
+         subend
+
+;
+; send a byte to stdout
+snd_byte subr     d1/d3/a0/a1
+         moveq    #iob.sbyt,d0
+         moveq    #forever,d3
+         move.l   da_outch(a6),a0
+         trap     #do.io
+         tst.l    d0
+         subend
+
+;
+; send a string to stdout
+snd_strg subr     d1-d3/a0/a1
+         moveq    #iob.smul,d0
+         move.w   (a1)+,d2
+         moveq    #forever,d3
+         move.l   da_outch(a6),a0
+         trap     #do.io
+         tst.l    d0
+         subend
+
+         endm
+
+prtcmd   macro    name
+[.lab]   dc.l     '[name]'
+         dc.l     cde_[name]-*
+         endm
+
+prtend   macro
+         dc.l    -1
+         endm
+         list

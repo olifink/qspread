@@ -1,0 +1,124 @@
+*                                                      1992 O.Fink
+* Oli's config macros
+         nolist
+
+*+++
+* clkey  key,type,offset,length
+*
+* creates a table entry for command line parsing
+* only type 0 (string)
+* and  type 1 (switch) supported up to now
+*---
+clkey   macro   key,type,offset,length
+        ifstr   {[key]} = {} goto clend
+        ifstr   {[.lab]} = {} goto nolab
+        xdef    [.lab]
+nolab   maclab
+[.lab]  ds.w    0
+        dc.b    '[key]',[type]
+        dc.w    [length],[offset]
+        goto    clx
+clend   maclab
+[.lab]  dc.w    -1
+clx     maclab
+        endm
+
+
+*+++
+* (label) cpyitem type,name,offset
+*
+* creates an entry for the config copy routine
+* possible types are (mac_config required)
+*       string  (00)
+*       byte    (08)
+*       word    (0a)
+*       long    (0c)
+*
+* uses: cfg_(name), cf.(type)
+* xdef: label if coded
+*---
+cpyitem macro   type,name,off
+        ifstr {[.lab]} = {} goto nolab
+        xdef    [.lab]
+nolab   maclab
+[.lab]  dc.w    cf.[type]
+        dc.l    cfg_[name]-*
+        dc.l    [off]
+        endm
+
+*+++
+* cpyend
+*
+* determinate copy list
+*---
+cpyend  macro
+        dc.w    -1
+        endm
+
+*+++
+* cfgbyte name,val
+*
+* creates a data item for a configurable byte item
+*
+* xdef:  cfg_[name]
+*---
+cfgbyte  macro    name,x
+         xdef     cfg_[name]
+cfg_[name] dc.b   [x]
+         endm
+
+*+++
+* cfgcode name,val
+*
+* creates a data item for a configurable code item
+*
+* xdef:  cfg_[name]
+*---
+cfgcode  macro    name,x
+         xdef     cfg_[name]
+cfg_[name] dc.b   [x]
+         endm
+
+*+++
+* cfgword name,val
+*
+* creates a data item for a configurable word item
+*
+* xdef:  cfg_[name]
+*---
+cfgword  macro    name,x
+         xdef     cfg_[name]
+cfg_[name] dc.w   [x]
+         endm
+
+*+++
+* cfglong name,val
+*
+* creates a data item for a configurable longword item
+*
+* xdef:  cfg_[name]
+*---
+cfglong  macro    name,x
+         xdef     cfg_[name]
+cfg_[name] dc.l   [x]
+         endm
+
+*+++
+* cfgstrg name,length,val
+*
+* creates a data item for a configurable string item
+*
+* uses:  cst_[name]  (position where maxiumum length is found)
+* xdef:  cfg_[name]
+*---
+cfgstrg  macro    name,l,x
+         xdef     cfg_[name]
+cst_[name] dc.w   [l]
+cfg_[name] dc.w   [.len(x)]
+           dc.b   '[x]'
+           ds.b   [l]-[.len(x)]
+           ds.w   0
+          endm
+
+
+         list

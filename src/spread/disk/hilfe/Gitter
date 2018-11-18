@@ -1,0 +1,99 @@
+NEU-BERECHNEN
+-------------
+Dieser Men‡punkt berechnet das komplette Arbeitsblatt neu. Dies ist
+wichtig f‡r Formeln, die Zellreferenzen haben, deren Ergebnis von
+anderen Zellen abh€ngig ist. Das Berechnen erfolgt je nach Einstellung
+im Statusmen‡ Zeilen oder Spaltenweise.
+
+
+ NDERE SPALTENBREITE
+--------------------
+Hiermit kann die Breite eine Spalte ver€ndert werden. Die Funktion
+bezieht sich auf alle Spalten den aktuellen Bereichs. Die maximale
+Spaltenbreite betr€gt 60 Zeichen, die minimale 1 Zeichen. Sollten
+numerische Ergebnisse nicht mehr in die Spalte passen, wird sie mit
+Sternchen (*) gef‡llt. Text wird automatische angepaœt. Die
+Anfangsbreite der Spalten kann dauerhaft mit einem Anpassungsprogramm
+eingestellt werden.
+
+
+PERFEKTE SPALTENBREITE
+----------------------
+Setzt die Spaltenbreite auf die Breite der breitesten angew€hlten Zelle
+in dieser Spalte.
+
+
+SPALTE AUSW HLEN
+----------------
+Diese Funktion markiert die Spalte, in der sich die aktuelle Zelle
+befindet, als neuen aktuellen Bereich.
+
+
+SPALTEN EINF§GEN
+----------------
+Diese Funktion bringt QSpread in den Spalten-Einf‡ge Modus. Der
+Einf‡ge-Zeiger erscheint und nach einem HIT erfragt QSpread die
+Anzahl der Spalten, die eingef‡gt werden sollen. Alles, was sich
+in den Spalte rechs davon befand wird um die angegebene Anzahl
+Spalten nach rechts bewegt. An der Einf‡geposition wird eine leere
+Spalte erzeugt. Da sich die absolute Gr„œe des Arbeitsblattes
+nicht €ndern kann, fallen die letzten Spalten im Blatt heraus.
+Referenzen von Formeln, die sich ge€ndert haben k„nnten, werden
+entsprechend angepaœt.
+
+
+SPALTE L¤SCHEN
+--------------
+Hier erscheint nach der Anwahl im Gitter der Spalten-L„sch-Zeiger
+und nach der Auswahl der ersten zu l„schenden Spalte erfragt
+QSpread die Anzahl der l„schenden Spalten. Nach einer Best€tigung
+wird alles was sich in dem Bereich befindet gel„scht und der Rest
+um die entsprechende Anzahl Spalten nach links verschoben. Am Ende
+des Blattes werden leere Spalten angef‡gt. Referenzen von Formeln,
+die sich ge€ndert haben k„nnten, werden entsprechend angepaœt.
+
+
+ZEILE AUSW HLEN
+---------------
+Diese Funktion markiert die Zeile, in der sich die aktuelle Zelle
+befindet, als neuen aktuellen Bereich.
+
+
+ZEILEN EINF§GEN
+---------------
+Diese Funktion bringt QSpread in den Zeilen-Einf‡ge Modus. Der
+Einf‡ge-Zeiger erscheint und nach einem HIT erfragt QSpread die
+Anzahl der Zeilen, die eingef‡gt ¼werden sollen. Alles, was sich
+in den Zeile darunter befand wird um die angegebene Anzahl Zeilen
+nach unten bewegt. An der Einf‡geposition wird eine leere Zeile
+erzeugt. Da sich die absolute Gr„œe des Arbeitsblattes nicht €ndern
+kann, fallen die letzten Spalten im Blatt heraus. Referenzen von
+Formeln, die sich ge€ndert haben k„nnten, werden entsprechend
+angepaœt.
+
+
+ZEILEN L¤SCHEN
+--------------
+Hier erscheint nach der Anwahl im Gitter der Zeilen-L„sch-Zeiger
+und nach der Auswahl der ersten zu l„schenden Zeile erfragt QSpread
+die Anzahl der l„schenden Zeilen. Nach einer Best€tigung wird alles
+was sich in dem Bereich befindet gel„scht und der Rest um die
+entsprechende Anzahl Zeilen nach oben verschoben. Am Ende des Blattes
+werden leere Spalten angef‡gt. Referenzen von Formeln, die sich
+ge€ndert haben k„nnten, werden entsprechend angepaœt.
+
+
+SUCHEN ..
+---------
+Mit dieser Funktion kann man nach dem Inhalt von bestimmten Zellen
+suchen, oder auch, wenn man in dem gezeigten Men‡ Ÿin Formeln' an-
+w€hlt, nach Teilen dieser Formeln dieser Zellen. Die Suche kann
+vorw€rts oder r‡ckw€rts laufen, wobei die Reihenfolge die ist, die
+im Status Men‡ auch f‡r Berechnungen eingestellt ist. Die Suche
+kann mit F9 ŸWieder'-holt werden.
+
+
+QSPREAD BEENDEN
+---------------
+Hiermit wird das Programm endg‡ltig verlassen und aus dem
+Arbeitsspeicher entfernt.

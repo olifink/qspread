@@ -1,0 +1,7 @@
+10 TK2_EXT:REMark We need this for LRESPR etc.
+100 LRESPR PTR_GEN
+110 LRESPR WMAN
+115 REMark ... replace German by English if you need an English version
+120 LRESPR HOT_REXT_german
+130 LRESPR MENU_REXT_german
+140 EXEC QSPREAD_German

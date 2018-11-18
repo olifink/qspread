@@ -1,0 +1,17 @@
+#
+# Standard window creator file
+# Project  : spread
+# Window   : digit
+# Update   : Tue,1993 May 25 20:04:47
+#
+menu=digt
+scal=0
+size=340,140
+item=do quit 
+selk=0
+flag=11,ditt
+flgt=Digit names
+cmds=0
+info=1
+appl=0
+end.

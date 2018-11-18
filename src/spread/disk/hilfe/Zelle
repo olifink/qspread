@@ -1,0 +1,89 @@
+L¤SCHE BEREICH
+--------------
+Der aktuelle Bereich wird nach einer Best€tigung gel„scht. 
+
+
+KOPIERE BEREICH
+---------------
+Der COPY-Zeiger erscheint und kopiert nach dem HIT den aktuellen
+Bereich an die neue Position, dessen linke obere Ecke ausgew€hlt wurde.
+Es ist wichtig zu wissen, daœ die Formeln kopiert werden, also relative
+Referenzen ‡ber Funktionen wie col() etc. sich auf die neue Position
+beziehen, absolute Referenzen (z.B. [C8]) beibehalten werden. Normale
+Referenzen (C8) werden angepaœt. Vorsicht ist bei ‡berlappenden
+Regionen geboten, da Zelle f‡r Zelle kopiert wird.
+
+
+VERSCHIEBE BEREICH
+------------------
+Diese Funktion arbeitet analog der Kopierfunktion, allerdings wird die
+Zelle, nachdem aus ihr der Wert kopiert wurde, gel„scht.
+
+
+ZAHLEN
+------
+Hier k„nnen Sie die Anzahl Nachkommastellen einstellen, die angezeigt
+werden sollen. Hat ein Wert mehr Nachkommastellen, so werden diese ohne
+Rundung abgeschnitten, hat er weniger oder keine Nachkommastellen, so
+werden die folgenden Ziffernstellen mit Nullen aufgef‡llt, bis die
+eingestellte L€nge der Nachkommastellen erreicht ist. G‡ltige Werte
+reichen hier von 0 bis 8 Stellen.
+
+Negative Zahlen werden ‡blicherweise durch ein vorangestelltes
+Minuszeichen gekennzeichnet, bei positiven Zeichen f€llt dieses
+logischerweise weg. Mit der Funktion "Vorzeichen immer" wird immer ein
+Vorzeichen vorangestellt, also bei positiven Werten ein Plus-Zeichen.
+
+Alternativ dazu gibt es die M„glichkeit, mit der "Klammern wenn
+negativ" Funktion, negative Zahlen in Parenthese zu setzten. F‡r
+positive Zahlen werden die Klammern nicht dargestellt, sondern durch
+Leerzeichen ersetzt.
+
+Die Funktion "Trennung einf‡gen" teilt den Ganzzahlenteil der Zahl
+(also die Vorkommastellen) zu besseren Lesbarkeit in Bl„cken zu je drei
+Ziffern durch Kommata (,) ab. Mit einem der Anpassungsprogramme l€œt
+sich zus€tzlich zwischen Kommata und Hochkomma (') w€hlen.
+
+F‡r den deutschsprachigen Raum, der ja bekanntlich nicht keinen
+Dezimalpunkt, sondern nur das Dezimalkomma kennt, daf‡r aber die
+Zifferntrennungen mit einem Punkt kennzeichnet, gibt es die Funktion
+"Deutsche Darstellung", die genau diese Anpassungen am Zahlenformat
+vornimmt.
+
+
+W HRUNGSSYMBOL
+--------------
+Hiermit werden alle numerischen Werte in dem aktuellen Bereich mit dem
+neuen W€hrungssymbol versehen. Es steht vor der Zahl und erscheint
+immer. Die verschiedenen W€hrungssymbole k„nnen mit dem Konfigurations-
+programm dauerhaft ver€ndert werden.
+
+
+ZELLAUSRICHTUNG
+---------------
+Hiermit werden numerische Daten im aktuellen Bereich rechts- bzw.
+linksb‡ndig dargestellt.
+
+
+ECHO §BER BEREICH
+-----------------
+Die Echo Funktion nimmt den Inhalt einer Zelle und benutzt diese Formel
+dann f‡r den ganzen angew€hlten Bereich. Dabei werden die relativen
+Bez‡ge entsprechend angepaœt.
+
+W€hlen Sie zuerst den Bereich an, in dem das Echo ausgef‡hrt werden
+soll. Danach aktivieren Sie die Echo Funktion. Wenn Sie jetzt den
+Zeiger innerhalb des Arbeitsblattsfensters bringen, erkennen Sie den
+Echo-Modus Zeiger. Mit ihm w€hlen die Zelle an, deren Funktion ‡ber den
+Bereich als Echo benutzt werden soll.
+
+
+BEREICH SCH§TZEN
+----------------
+Es ist m„glich eine einzelne Zelle oder einen Bereich gegen Ver€nderungen
+zu sch‡tzen. W€hlen Sie die Zelle oder den Bereich an, dann aktivieren
+Sie diesen Befehl.
+
+SCHUTZ AUFHEBEN
+---------------
+Hebt den Schutz von angew€hlter Zelle oder Bereich wieder auf.

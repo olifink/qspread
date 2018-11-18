@@ -1,0 +1,140 @@
+MATHEMATISCHE FUNKTIONEN
+----------------------------
+z : Zellreferenz                z.B. E5 (rel.) oder [E5] (abs.)
+x : eine Zahl, das Ergebnis      
+    einer Funktion, oder z      z.B. -12.34
+r : Bereich als z:z             z.B. B2:F6 oder [B2]:[F6]
+c : ein Zeichen                 z.B. -
+
+
+abs(x)  liefert den Absolutwert von x, d.h. den Wert ohne ein
+        m„gliches Minuszeichen.
+        abs(5)    =    5      abs(-6)   =    6
+
+sgn(x)  ergibt -1 wenn x negativ ist, 0 f‡r 0 und +1 f‡r positiv.
+
+cos(x)  liefert den Cosinus von x (Einheit von x ist rad)
+
+sin(x)  liefert den Sinus von x (Einheit von x ist rad)
+
+tan(x)  liefert den Tangens von x (Einheit von x ist rad)
+
+cot(x)  liefert den Cotangens von x (Einheit von x ist rad)
+
+asin(x) liefert den Wert in rad, dessen Sinus x ist
+
+acos(x) liefert den Wert in rad, dessen Cosinus x ist
+
+atan(x) liefert den Wert in rad, dessen Tangens x ist
+
+acot(x) liefert den Wert in rad, dessen Cotangens x ist
+
+sqrt(x) liefert die Wurzel von x; x muœ positiv sein!
+
+ln(x)   liefert den nat‡rlichen Logarithmus (Basis e)
+
+log(x)  liefert den 10er-Logarithmus (Basis 10)
+
+exp(x)  ergibt e hoch x
+
+rint(x) rundet x auf die n€chste Ganzzahl
+        rint(0.3) =    0      rint(2.6) =    3
+
+int(x)  liefert den Ganzzahlwert von x
+        int(0.3)  =    0      int(2.6)  =    2
+
+col()   liefert die Nummer der aktuellen Spalte (1..) der Zelle, in
+        der sich die Formel befindet
+
+row()   liefert die Nummer der aktuellen Spalte (1..) der Zelle, in
+        der sich die Formel befindet
+
+sum(r)  berechnet die Summe des Bereichs r
+        sum(a3:e7)     = 42      (irgendein Wert!)
+
+avg(r)  berechnet den Durchschnitt des Bereichs r (=sum(r)/cnta(r))
+        avg(a3:e7)     = 4.2     (irgendein Wert!)
+
+wdth(r) liefert die Breite der Spalten in r
+        wdth(a3:e7)    = 60      wdth(a1)       = 10
+
+len(z)  liefert die L€nge des Textes in Zelle z
+        len(a3)  = 27      (wenn in a3 ein Text der L€nge  27 steht!)
+
+cnta(r) liefert die Anzahl der Zellen im Bereich r
+
+cnt(r)  liefert die Anzahl der Zellen im Bereich r, die nicht Null sind
+
+cntnum(r) ergibt die Anzahl der Zellen im Bereich r mit numerischem Inhalt
+
+date()  gibt das heutige Datum (und Zeit) in Sekunden zur‡ck
+        (seit 01/01/61)
+
+if(bedingung;wahr;falsch)
+        gibt den Wert Ÿwahr' zur‡ck, wenn Ÿbedingung' ungleich 0 ist,
+        ansonsten Ÿfalsch'.
+
+PI      liefert die Zahl PI (3.1415..)
+
+
+TEXTFUNKTIONEN
+--------------
+
+rept$(c,x)      liefert eine Textzeile, die nur aus dem Zeichen c
+                besteht und x-mal wiederholt wurde
+                rept$(-,4)     = ----
+
+month$(x)       liefert den Namen des Monats x
+                month$(4)      = April
+
+day$(x)         liefert den Wochentagsname von x
+                day$(3)        = Mittwoch
+
+digit$(x)       buchstabiert die Ziffern des Ganzzahlteils von x
+                digit$(42)     = vier zwei
+
+time$(x)        gibt die Zeit von x (in Sekunden seit 01/01/61)
+                als Text im ss:mm Format zur‡ck
+                time$ (date () ) ergibt die aktuelle Zeit
+
+date$(x)        gibt das Datum von x (in Sekunden seit 01/01/61)
+                als Text im tt/mm/jj Format zur‡ck
+                date$ (date () ) ergibt das aktuelle Datum
+
+
+OPERATIONEN
+-----------
+x + y           addiere x und y
+
+x - y           subtrahiere y von x
+
+x * y           multipliziere x mit y
+
+x / y           dividiere x durch y
+
+x ^ y           berechne x hoch y
+
+( und )         er„ffne eine neue, oder schlieœe die letzte
+                Klammerebene (max. 16 Ebenen ineinander erlaubt)
+
+x + y %         addiere y-Prozent von x zu x (nat‡rlich sind auch
+                die anderen Operationen erlaubt)
+
+
+VERGLEICHE UND LOGSICHE VERKN§PFUNGEN
+------------------------------------
+x = y           ergibt 1 (wahr), wenn x gleich y ist, sonst 0 (falsch)
+
+x <> y          ergibt 1 (wahr), wenn x ungleich y ist, sonst 0 (falsch)
+
+x > y           ergibt 1 (wahr), wenn x gr„œer als y ist, sonst 0 (falsch)
+
+x < y           ergibt 1 (wahr), wenn x kleiner als y ist, sonst 0 (falsch)
+
+x >= y          ergibt 1 (wahr), wenn x gr„œer oder gleich y ist, sonst 0
+
+x <= y          ergibt 1 (wahr), wenn x kleiner oder gleich y ist, sonst 0
+
+x & y           ergibt 1 (wahr), wenn x und y nicht gleich 0 sind, sonst 0
+
+x | y           ergibt 1 (wahr), wenn x oder y nicht gleich 0 sind, sonst 0

@@ -1,0 +1,22 @@
+BENUTZERFUNKTIONEN
+------------------
+Das Formelregal findet man unter dem Fn's (F6) Men‡punkt. Ruft man
+dieses Men‡ auf, so erh€lt man eine Liste von (z.Zt) f‡nf
+Benutzerdefinierbaren Funktionen. Um nun eine neue Funktion in dieser
+Liste aufzunehmen, bewegen Sie den Zeiger auf die gew‡nschte
+Funktionszeile und erzeugen ein DO. Hier k„nnen Sie nun die Formel
+eintippen (bitte beachten Sie, daœ es den Fragezeichen-Zeiger in dieser
+Art der Formeleingabe nicht gibt).
+
+Um eine im Formelspeicher stehende Funktion zu aktivieren, klicken Sie
+diese einfach mit einem HIT an, oder dr‡cken die entsprechende
+Zifferntaste. Wenn Sie den Zeiger jetzt im Gitter herumbewegen, sehen
+Sie nicht den normalen Zeiger, sondern einen kreuzf„rmigen Zeiger.
+Dieser Zeiger gibt ihnen zu erkennen, daœ eine Formel in die Zelle
+gebracht werden wird, die Sie als n€chstes mit diesem Zeiger mit einem
+HIT ausw€hlen. Um zur‡ck zum normalen Zeiger zu kommen, ohne eine
+Benutzerfunktion einzuf‡gen, dr‡cken Sie die rechte Maustaste.
+
+Der Formelspeicher wird mit in der Datei gesichert, damit Sie immer die
+von Ihnen ben„tigten Formeln f‡r die entsprechende Arbeitsbl€tter zu
+verf‡gung haben.

@@ -1,0 +1,198 @@
+* Spreadsheet					      10/05-92
+*	 - filter execution
+
+	 section  prog
+
+	 include  win1_keys_qdos_pt
+	 include  win1_keys_qdos_io
+	 include  win1_keys_qdos_ioa
+	 include  win1_keys_qdos_sms
+	 include  win1_keys_sys
+	 include  win1_keys_jcb
+	 include  win1_keys_err
+	 include  win1_mac_oli
+	 include  win1_spread_keys
+
+	 xdef	  flt_exec
+	 xdef	  flt_impt
+	 xdef	  flt_expt
+
+flt_impt
+	 moveq	  #1,d0
+	 bra.s	  flt_exec
+
+flt_expt
+	 moveq	  #0,d0
+
+;+++
+; load and prepare filter job
+;
+;		  Entry 		     Exit
+;	 d0	  0=export/1=import	     error code
+;	 a0	  open pipe id		     preserved
+;	 a1	  filter filename	     active pipe id
+;	 a2	  ???			     passive pipe id
+;---
+flt_open equ	  $00
+flt_file equ	  $04
+flt_fid  equ	  $08
+flt_head equ	  $0c
+flt.head equ	  16
+flt_jbid equ	  $20
+flt_jbbs equ	  $24
+flt_pout equ	  $28
+flt_pin  equ	  $2c
+flt_sysv equ	  $30
+flt.len  equ	  $34
+
+flt_exec subr	  a0/a3/d1-d3/d7
+	 move.l   d0,d7
+	 suba.w   #flt.len,sp
+	 move.l   sp,a3
+	 moveq	  #-1,d0
+	 move.l   d0,flt_pin(a3)
+	 move.l   d0,flt_pout(a3)
+
+	 move.l   a0,flt_open(a3)
+	 move.l   a1,flt_file(a3)
+
+	 moveq	  #ioa.open,d0		     ; open filter job
+	 move.l   a1,a0
+	 moveq	  #myself,d1
+	 moveq	  #ioa.kshr,d3
+	 trap	  #do.ioa
+	 tst.l	  d0
+	 bne	  exec_exit
+
+	 move.l   a0,flt_fid(a3)
+
+	 moveq	  #iof.rhdr,d0		     ; read file header
+	 lea	  flt_head(a3),a1
+	 moveq	  #flt.head,d2
+	 moveq	  #forever,d3
+	 trap	  #do.io
+	 tst.l	  d0
+	 bne	  exec_cf
+
+	 moveq	  #err.ipar,d0		     ; test for executable file
+	 lea	  flt_head(a3),a1
+	 cmp.b	  #1,$5(a1)
+	 bne	  exec_cf
+
+	 moveq	  #sms.info,d0		     ; find my job id
+	 trap	  #do.sms2
+	 move.l   a0,flt_sysv(a3)
+
+	 moveq	  #sms.crjb,d0		     ; create filter job
+	 move.l   (a1),d2
+	 move.l   $06(a1),d3
+	 add.l	  #$c,d3		     ; channel info space
+	 suba.l   a1,a1
+	 trap	  #do.sms2
+	 tst.l	  d0
+	 bne	  exec_cf
+
+	 move.l   a0,flt_jbbs(a3)
+	 move.l   d1,flt_jbid(a3)
+
+	 moveq	  #iof.load,d0		     ; load filter job
+	 move.l   flt_head(a3),d2
+	 moveq	  #forever,d3
+	 move.l   flt_fid(a3),a0
+	 move.l   flt_jbbs(a3),a1
+	 trap	  #do.io
+	 xjsr	  gu_fclos
+	 tst.l	  d0
+	 bne	  exec_exit
+
+	 moveq	  #ioa.open,d0		     ; open pipe (active end)
+	 move.l   flt_jbid(a3),d1	     ; owned by filter job
+	 moveq	  #ioa.kshr,d3
+	 lea	  pipe_out,a0
+	 trap	  #do.ioa
+	 tst.l	  d0
+	 bne	  exec_rjob
+
+	 move.l   a0,flt_pout(a3)
+
+	 moveq	  #ioa.open,d0		     ; open passive end of pipe
+	 moveq	  #myself,d1
+	 move.l   a0,d3
+	 lea	  pipe_in,a0
+	 trap	  #do.ioa
+	 tst.l	  d0
+	 bne	  exec_clos
+
+	 move.l   a0,flt_pin(a3)
+
+	 move.l   flt_jbid(a3),d0	     ; find filter jcb
+	 mulu	  #4,d0
+	 move.l   flt_sysv(a3),a0
+	 move.l   sys_jbtb(a0),a0
+	 move.l   (a0,d0.l),a0
+	 move.l   jcb_a7(a0),a1
+	 suba.w   #$c,a1
+	 move.l   a1,jcb_a7(a0)
+	 move.w   #2,(a1)+		     ; ..2 channels opened
+	 tst.b	  d7
+	 bne.s	  exec_imp
+
+	 move.l   flt_pin(a3),(a1)+
+	 move.l   flt_open(a3),(a1)+
+	 bra.s	  exec_chok
+
+exec_imp
+	 move.l   flt_open(a3),(a1)+
+	 move.l   flt_pout(a3),(a1)+
+
+exec_chok
+	 move.w   #0,(a1)		     ; ..no command string
+	 suba.l   jcb_a6(a0),a1
+	 move.l   a1,jcb_a5(a0)
+
+	 move.l   a3,-(sp)
+	 moveq	  #sms.acjb,d0		     ; activate filter job
+	 move.l   flt_jbid(a3),d1
+	 moveq	  #8,d2
+	 moveq	  #no.wait,d3
+	 trap	  #do.sms2
+	 move.l   (sp)+,a3
+	 tst.l	  d0
+	 bne.s	  exec_clos
+
+	 move.l   flt_pout(a3),a1
+	 move.l   flt_pin(a3),a2
+	 tst.b	  d7
+	 beq.s	  exec_exit
+
+	 exg	  a1,a2
+
+exec_exit
+	 adda.w   #flt.len,sp
+	 tst.l	  d0
+	 subend
+
+exec_rjob
+	 moveq	  #sms.frjb,d0		     ; remove filter jobs
+	 move.l   flt_jbid(a3),d1
+	 moveq	  #err.nc,d3
+	 trap	  #do.sms2
+	 moveq	  #err.nc,d0
+	 bra	  exec_exit
+
+exec_cf
+	 move.l   flt_fid(a3),a0
+	 xjsr	  gu_fclos
+	 bra	  exec_exit
+
+exec_clos
+	 move.l   flt_pout(a3),a0
+	 xjsr	  gu_fclos
+
+	 move.l   flt_pin(a3),a0
+	 xjsr	  gu_fclos
+	 bra	  exec_exit
+
+pipe_out dc.w	  9,'pipe_4096'
+pipe_in  dc.w	  4,'pipe'
+	 end

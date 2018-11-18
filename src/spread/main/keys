@@ -1,0 +1,16 @@
+* Spreadsheet                                         29/11-91
+*        - window keys for spreadsheet
+         nolist
+
+*
+* window defintion keys
+mw_mxs   equ      492               main window xsize
+mw_mys   equ      140               main window ysize
+mw_lxs   equ      3*6               standard loose item xsize
+mw_lys   equ      10                standard loose item ysize
+mw_cxs   equ      6*6               command loose item xsize
+mw_fxs   equ      mw_mxs/4          window flag size
+mw_fxp   equ      4+2*(mw_lxs+4)+54  window flag position (right of move/size)
+grnstp   equ      92                green stipples for flag
+
+         list

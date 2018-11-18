@@ -1,0 +1,107 @@
+VERGESSE ARBEITSBLATT
+---------------------
+Hiermit wird das aktuelle Arbeitsblatt aus dem Speicher entfernt und
+ein neues, leeres Arbeitsblatt zur Verf‡gung gestellt. Die Gr„œe des
+neuen Arbeitsblattes kann in Zeilen und Spalten ver€ndert werden. Dazu
+ist die entsprechende Zahl anzuw€hlen und die neue Gr„œe einzugeben.
+Die vorgeschlagenen Werte k„nnen dauerhaft mit einem Anpassungsprogramm
+eingestellt werden.
+
+
+LADE NEUES ARBEITSBLATT ..
+--------------------------
+Mit dieser Funktion kann ein neues Arbeitsblatt von einem Medium
+gelesen und in den Arbeitsspeicher von QSpread gebracht werden. Die
+Auswahl der Datei erfolgt ‡ber das File Select Fenster der Men‡
+Erweiterungen. Es werden nur Dateien mit der Endung _tab angezeigt. Das
+alte Arbeitsblatt wird bei dieser Funktion vergessen und kann nicht
+wiedergeholt werden. Die Dateiendung dauerhaft mit einem
+Anpassungsprogramm eingestellt werden.
+
+
+SPEICHERE ARBEITSBLATT
+----------------------
+Hiermit wird das aktuelle Arbeitsblatt in einer Datei im QSpread Datei
+Format gesichert. Hat das Arbeitsblatt noch keinen Namen, wird das
+aktuelle Datenlaufwerk zur  nderung angeboten. Sollte der Name nicht
+mit _tab enden, wird diese Endung angeh€ngt. Die Dateiendung kann
+dauerhaft mit einem Anpassungsprogramm eingestellt werden. Sollte die
+Datei schon existieren wird eine Kopie der alten Datei erzeugt
+(Statusmenu: Kopie beim sichern), oder nachgefragt, ob diese
+‡berschriebe werden soll oder nicht. Sollte dem Arbeitsblatt schon ein
+Dateiname zugeordnet sein, wird nicht mehr nach einem Namen gefragt.
+
+
+SPEICHERE MIT NEUEM NAMEN ..
+----------------------------
+Hat die selbe Funktion wie Speichern des Arbeitsblattes, aber es wird auf
+jeden Fall nach einem Dateinamen gefragt, auch wenn dem Arbeitsblatt
+schon eine Datei zugeordnet ist.
+
+
+IMPORTIERE AUS DATEI ..
+-----------------------
+Hiermit k„nnen, nach der Wahl eines Import-Filters im  ndere Dateioptionen
+Menu‡, Dateien in das Arbeitsblatt gebracht, die nicht im QSpread Datei
+Format vorliegen. Der Filter ‡bernimmt die Aufgabe der Konvertierung in
+das QSpread Datei Format.
+
+
+EXPORTIERE IN DATEI ..
+----------------------
+ hnlich dem Importieren, wird hier das QSpread Dateiformat durch einen
+Exportfilter in ein fremdes Format  umgewandelt. Der Filter und die
+Zieldatei m‡ssen ausgew€hlt werden. Existiert die Datei schon, wird
+nachgefragt ob ‡berschrieben werde soll.
+
+
+BLOCK IN ZWISCHENABLAGE
+-----------------------
+Der aktuelle Bereich wird als Text in die Zwischenablage (Scrap)
+gebracht, und kann dann in andere Programme (z.B. QD) direkt von dort
+‡bernommen werden. Daten die sich schon in der Ablage befinden werden
+‡berschrieben.
+
+
+MARKIERE EINE SEITE
+-------------------
+Eine Seite wird ab der aktuellen Zelle in der eingestellten Gr„œe
+markiert.
+
+
+DRUCKE EINE SEITE
+-----------------
+Eine Seite wird ab der aktuellen Zelle in der eingestellten Gr„œe
+markiert, und durch den Druckerfilter an der entsprechenden
+Schnittstelle ausgedruckt. Alle Werte k„nnen im " ndere
+Druckeroptionen" eingestellt werden.
+
+
+DRUCKE AKTUELLEN BEREICH
+------------------------
+Nur der aktuelle Bereich wird durch den Druckerfilter an der
+angegebenen Schnittstelle ausgedruckt. Alle Werte k„nnen im " ndere
+Druckeroptionen" eingestellt werden.
+
+
+DRUCKE FORMEL-REPORT
+--------------------
+Druckt die Formeln, nicht die Ergebnisse.
+
+
+ NDERE DRUCKER/FILTER-OPTIONEN
+------------------------------
+QSpread gibt die Daten nicht direkt an die Schnittstelle, an die der
+Drucker angeschlossen ist (obwohl dies auch m„glich ist), sondern
+schaltet auch hier wieder einen Druckertreiber dazwischen der das interne
+Format in Druck- und Steuerzeichen umwandelt. Der Vorteil dieser Methode ist,
+daœ die unterschiedlichsten Druckertypen ‡ber QSpread angesprochen
+werden k„nnen, und sich die Treiber darum zu k‡mmern haben, das Format
+f‡r den Drucker richtig umzusetzen. Wird kein Filtername angegeben gibt
+QSpread ASCII-Text aus..
+In diesem Men‡ kann auch die Schnittstelle f‡r den den Drucker, sowie
+die Papiergr„œe in Zeilen und Zeichen angepaœt werden.
+Die vorgeschlagenen Werte k„nnen dauerhaft mit einem Anpassungsprogramm
+eingestellt werden.
+In diesem Men‡ werden auch die Dateinamen der Transferfilter f‡r den
+Im- und Export eingestellt.

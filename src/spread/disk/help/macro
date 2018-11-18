@@ -1,0 +1,16 @@
+USER DEFINED FUNCTIONS
+----------------------
+There are always formulae that are used quite often, and it is
+unpleasant work to enter it all over again. The QSpread Fn's menu
+provides a way of storing the often used formulae. When this menu is
+activated, you see a list of (at present) 5 lines where formulae may be
+stored. To enter a formulae in a slot, just select it with a DO. Now
+you can enter the formula as usual (please remember that there is no
+question mark pointer available here).
+
+To activate a formula found in the functions menu, select it with a HIT
+or press the according number key. When you move the pointer into the
+grid window now, you see that it changed to an cross pointer. This
+pointer shows you that a formula is brought into the next cell selected
+with a HIT. To get back to the normal pointer without entering a user
+defined function, just press the right mouse button.

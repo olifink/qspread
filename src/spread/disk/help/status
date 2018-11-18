@@ -1,0 +1,111 @@
+CALCULATION/INPUT ORDER
+-----------------------
+The order for entering data or calculations can be switched between
+column and row. The default value can be changed with a configuration
+program.
+
+
+AUTO-CALCULATION ON INPUT
+-------------------------
+When on, the complete sheet is recalculated after each entry. c.f.:
+Grid-Recalculate.
+
+
+CURSOR-MOVE AFTER INPUT
+-----------------------
+The cursor can stay at the current cell (none), move down or right.
+
+
+BACKUP FILE ON SAVE
+-------------------
+When activated, an existing file with the same filename is copied into
+a backup file ending in _bak. An existing backup file is replaced.
+
+
+CONFIRMATION REQUEST
+--------------------
+When selected you are asked for confirmation before any destructive
+action (delete larger blocks, overwrite file) is performed.
+
+
+LOCAL DIRECTORIES
+-----------------
+Allows you to change the directory, where QSpread data is stored, where
+QSpread looks for printer and transfer filters, as well as the directory
+containing this help information.
+
+
+TOOLBAR
+-------
+This options allows you to switch the Toolbar off (and back on again, of
+course), if you think your grid area is to small and you are desperatly
+determined to use the space required by the toolbar.
+
+
+GLOBAL UNITS
+------------
+This allows you to change the number format for new entries.
+
+Negative numbers are usually represented by a leading minus sign,
+positive number are shown as they are. The function "sign number
+always" puts a plus sign in front of positive numbers.
+
+Alternatively, the function "brackets when negative" put negative
+values in brackets whereas positive values are left as they are.
+
+The function "insert seperators" splits the integer part of a number
+into blocks of three digits each seperated by a comma (,) for enhanced
+readability. A configuration program can change the comma to an (').
+
+The german speaking community requires a special numeric format,
+because there is no decimal point, but a decimal comma, and digit
+seperation is done via points. The function "german representation"
+takes care of that.
+
+
+GLOBAL MONETARY SYMBOL
+----------------------
+This allows to introduce a numeric value in the current range with a
+new monetary symbol.
+
+
+GLOBAL JUSTIFICATION
+--------------------
+This allows to display numeric values in the current range to be left-
+or right justified.
+
+
+FORMAT NUMBERS
+--------------
+The formatting of numbers can be suppressed if this is turned off.
+
+
+ROUND DECIMAL PLACES
+--------------------
+The number of decimal places can be entered here. It determines how
+exact the calculations are to be performed, and when numbers are to be
+rounded. Rounding affects the results of calculations and I should
+mention that from 0.5 incl. is rounded to the nearest upward number.
+
+
+EMPTY IF ZERO
+-------------
+A cell with the numeric value zero can be left blank. This does not
+affect the numeric value. The default value can be changed with a
+configuration program.
+
+
+EMPTY IF SAME AS ABOVE
+----------------------
+A cell with the numeric value of the cell above can be left blank. This
+function has be included for long columns of data, where only values
+are listed if they differ from the previous value. This does not affect
+the numeric value. The default value can be changed with a
+configuration program.
+
+
+SET DIGIT NAMES
+---------------
+This function pulls down another window, where you can determin the
+names used in the digit spelling function digit$. This allows you eg.
+translations into other languages.

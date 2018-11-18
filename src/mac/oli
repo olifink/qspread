@@ -1,0 +1,130 @@
+*                                                      1992 O.Fink
+* Oli's macros (includes mac_xref)
+         nolist
+
+*+++
+* qdosjob name,[start],[namespace]
+*
+* creates an standard QDOS job header, if start is omitted,
+* the execution begins with the following statement
+* if namespace is given, additional null bytes are created
+* to fill in later the real job name
+*---
+qdosjob  macro    name,mystart,namespace
+         ifstr    {[.lab]} = {} goto nolab
+         xdef   [.lab]
+nolab    maclab
+         ifstr    {[mystart]} <> {} goto myqjb
+         local    start
+[.lab]   jmp      start
+         nop
+         dc.w     $4afb
+         dc.w     [.len(name)]
+         dc.b     '[name]'
+         ifstr    {[namespace]} = {} goto nnsp
+         ds.b     [namespace]-[.len(name)]
+nnsp     maclab
+start    ds.w     0
+         goto     jobend
+myqjb    maclab
+[.lab]   jmp      [mystart]
+         nop
+         dc.w     $4afb
+         dc.w     [.len(name)]
+         dc.b     '[name]'
+         ifstr    {[namespace]} = {} goto nnsp2
+         ds.b     [namespace]-[.len(name)]
+nnsp2    maclab
+         ds.w     0
+jobend   maclab
+         endm
+
+
+*+++
+* clkey  key,type,offset,length
+*
+* creates a table entry for command line parsing
+* only type 0 (string)
+* and  type 1 (switch) supported up to now
+*---
+clkey   macro   key,type,offset,length
+        ifstr   {[key]} = {} goto clend
+[.lab]  ds.w    0
+        dc.b    '[key]',[type]
+        dc.w    [length],[offset]
+        goto    clx
+clend   maclab
+[.lab]  dc.w    -1
+clx     maclab
+        endm
+
+*+++
+* qstrg  string
+*
+* creates a standard QDOS string
+*---
+qstrg    macro    a
+         noexpand
+[.lab]   dc.w     [.len(a)],'[a]'
+         endm
+
+*+++
+* subr   reglist
+*
+* introduces a subroutine and saves the given registers on
+* the stack (-> subend)
+*---
+subr     macro    rs
+rxx      setstr   [rs]
+[.lab]   movem.l  [rxx],-(sp)
+         endm
+
+*+++
+* subend
+*
+* fetchs the registers of the current subroutine and returns
+*---
+subend   macro
+[.lab]   movem.l  (sp)+,[rxx]
+         rts
+         endm
+
+         include win1_mac_xref
+
+*+++
+* push register
+*
+* pushes a register on the stack
+*---
+push    macro   rg
+[.lab]  move.l  [rg],-(sp)
+        endm
+
+*+++
+* pushm list_of_registers
+*
+* pushes multiple registers on the stack
+*---
+pushm   macro   rg
+[.lab]  movem.l [rg],-(sp)
+        endm
+
+*+++
+* pop   register
+*
+* pops a register from the stack
+*---
+pop     macro   rg
+[.lab]  move.l  (sp)+,[rg]
+        endm
+
+*+++
+* popm  list_of_registers
+*
+* pops multiple registers from the stack
+*---
+popm    macro   rg
+[.lab]  movem.l (sp)+,[rg]
+        endm
+
+         list

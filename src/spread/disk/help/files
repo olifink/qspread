@@ -1,0 +1,95 @@
+FORGET SHEET
+------------
+This command removes the current sheet from memory and provides a new,
+empty one. The size of the new sheet can be adjusted by selecting the
+required number and entering the new size. The default number can be
+changed with a configuration program.
+
+
+LOAD SHEET ..
+-------------
+With this function a new sheet can be loaded from a medium into the
+memory of QSpread. Selection of the filename is done through the File
+Select window of the menu extensions. Only files ending with _tab are
+displayed. The old sheet will be removed with this operation an can not
+be retrieved. The file ending can be changed with a configuration
+program.
+
+
+SAVE CURRENT SHEET
+------------------
+This saves the current sheet into a file using the QSpread file format.
+If the sheet is unnamed, the current data default drive is suggested.
+In case the file name does not end in the ending _tab, it is appended.
+If the file already exists, and if the backup facility is selected
+(Status menu), a copy of the old file is made. Otherwise you are asked
+if you want to overwrite the old version. If there is already a file
+connected to the sheet, this name is used. The file ending can be
+changed with a configuration program.
+
+
+SAVE WITH NEW FILENAME ..
+-------------------------
+This performs the same actions as Save current sheet, but you are
+always asked to select a filename for the sheet, even if there is
+already one connected.
+
+
+IMPORT FROM FILE ..
+-------------------
+This command can import files which are not in the QSpread file format.
+You have to name an import filterjob in the Files Options menu, which does
+the conversion.
+
+
+EXPORT TO FILE ..
+-----------------
+Like the import functions, it is the QSpread file format which gets
+converted by an export filter into a different file format. The filter
+file has to be set in the Files Option menu.
+
+
+BLOCK INTO SCRAP
+----------------
+The current range is brought as text into the scrap, and can, from
+there, be used in other programs which have scrap support (like QD).
+Data already in the scrap will be overwritten.
+
+
+MARK PAGE
+---------
+One page is highlighted in the given size starting from the current cell.
+
+
+PRINT CURRENT PAGE
+------------------
+One page is printed in the given size starting from the current cell.
+Printing is done through the printer filter to the given port. All
+values can be changed in the change-printer-options menu.
+
+
+PRINT CURRENT RANGE
+-------------------
+The current range is printed through the printer filter to the selected
+printer port.
+
+
+FORMULAE REPORT
+---------------
+Prints the formulae, not the values.
+
+
+CHANGE PRINTER/FILTER OPTIONS
+-----------------------------
+QSpread does not put the data directly into the port, where the printer
+is connected, but uses a driver program to convert the internal format
+into control sequences. The advantage of the approach is that a
+great variety of printer can be supported without changing the program,
+you have just to select the right driver, which have to take care of
+the right printer format. This allows the support even exotic printers
+or multiple printers. If no driver name is given, output will be plain
+ASCII. You can also change the name of the printer port in this menu, as
+well as the number of lines and characters per page.
+All values can be changed with a configuration program.
+The filename of the transfer (ie. import or export) filter can also be
+set via this menu.

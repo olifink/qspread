@@ -1,0 +1,23 @@
+;
+; formula parser macros
+        nolist
+
+;+++
+; xfnlist (name,nr)
+;
+; creates an entry for the extended function list of the parser
+;---
+xfnlist macro name,nr
+        ifstr {[name]} = {} goto xfnend
+[.lab]  dc.w    [.len(name)]
+        dc.b    '[name]'
+        dcb.b   6-[.len(name)],32
+        dc.w    [nr]
+        dc.l    xfn_[name]-*
+        goto    xfnexit
+xfnend  maclab
+        dc.w    -1
+xfnexit maclab
+        endm
+
+        list

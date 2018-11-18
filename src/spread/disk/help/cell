@@ -1,0 +1,76 @@
+ERASE RANGE
+-----------
+The current range will be cleared after confirmation. The confirmation
+request state can be changed with a configuration program.
+
+
+COPY RANGE
+----------
+The copy-pointer appears and, after a hit, copies the current range to
+the new position, which top left hand corner has been select. It is
+important to know that the formulae are copied, which means that
+relative cell references using functions like col() etc. are also
+relative to their new position, whereas absolute references (eg. [C8])
+are kept. Normal reference are adjusted. Be careful with overlapping
+regions, because copying is done cell by cell.
+
+
+MOVE RANGE
+----------
+This function works the same way as the copy range functions, but it
+clear the cell where the formula came from.
+
+UNITS
+-----
+This allows you to change the number format in the current range.
+
+Negative numbers are usually represented by a leading minus sign,
+positive number are shown as they are. The function "sign number
+always" puts a plus sign in front of positive numbers.
+
+Alternatively, the function "brackets when negative" put negative
+values in brackets whereas positive values are left as they are.
+
+The function "insert seperators" splits the integer part of a number
+into blocks of three digits each seperated by a comma (,) for enhanced
+readability. A configuration program can change the comma to an (').
+
+The german speaking community requires a special numeric format,
+because there is no decimal point, but a decimal comma, and digit
+seperation is done via points. The function "german representation"
+takes care of that.
+
+
+CURRENCY SYMBOL
+---------------
+This allows to introduce a numeric value in the current range with a
+new monetary symbol. All symbols can be configured to different texts.
+
+
+JUSTIFICATION
+-------------
+This allows to display numeric values in the current range to be left-
+or right justified.
+
+
+ECHO OVER RANGE
+---------------
+The echo function takes the content of one cell and uses this formula
+for the whole selected range. Thereby any relative references are
+adjusted accordingly. First of all, select the range over which the
+echo should be performed. Then you activate the echo function. If you
+move the pointer into the grid, you identify the echo-mode pointer. Use
+this pointer to select the cell which should be used for echo, with a
+hit.
+
+
+PROTECT RANGE
+-------------
+It is possible to protect a cell or a range against modifications.
+Select the cell or range and choose this command.
+
+
+UNPROTECT RANGE
+---------------
+The opposite of protect, allows you to modify the unprotected cells
+afterwards.

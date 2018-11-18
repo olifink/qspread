@@ -1,0 +1,245 @@
+* Spreadsheet           29/11-91
+*  - keys for spreadsheet
+  nolist
+*
+* main loop action keys
+mact.edit equ   2     ; normal edit mode
+mact.doed equ   4     ; big edit mode in separate window
+
+*
+* extended error messages
+xer.base equ   10
+xer_fjtm equ   12      filter job terminated
+
+*
+* value and formular entry in dma
+val_real equ   $00      f floating point value (or 0)
+val.strg equ   -1        string has no float value
+val_form equ   $06      l ptr to formular string (or 0)
+val_f2nd equ   $0a      w 2nd format word
+val_fwrd equ   $0c      w format word
+val_strg equ   $0e      s string for contents
+val.len  equ   $10        minimum length of entry
+
+*
+* format word (numeric) definition
+fw..dp  equ   0        bit 0..4 decimal places
+fw..germ equ   4        german represtentation
+fw..sign equ   5        always sign number
+fw..brac equ   6        parenthesis, when negative
+fw..sepr equ   7        insert seperators
+fw..just equ   10        clear right just./ set left just.
+fw..strg equ   11        exclusivly set for string
+fw..msym equ   12        bit 12..14 monetary symbol
+fw..prct equ   15        set if cell is protected
+
+fw..cont equ   0        set for continuation string
+fw..bold equ   1        set if bold on output
+fw..ital equ   2        set if italic on output
+fw..undl equ   3        set if underlined on output
+fw..sjst equ   10        clear left just./ set right just.
+
+fw..cent equ   16       set if cell needs to be centered (left/right ignored)
+fw..fmpd equ   17       cell format predefined (not overwritten by first input)
+
+
+fw.strg  equ   1<<fw..strg
+*
+* action modes
+mod.slct equ   0        normal selection mode
+mod.delc equ   1        delete column mode
+mod.delr equ   2        delete row mode
+mod.insc equ   3        insert column mode
+mod.insr equ   4        insert row mode
+mod.copy equ   5        copy mode
+mod.echo equ   6        echo mode
+mod.move equ   7        move mode
+mod.selc equ   8        cell identification mode
+
+*
+* job constants
+qs.prior equ   32      job priority
+qs.xchar equ   6
+qs.ychar equ   10
+idx.slen equ   2+4      maximum length for index strings
+form.len equ   2+240        126  maximum formula length
+fnam.len equ   2+42      maximum (filter) filename length   $$$ was 40!!!
+
+*
+* data area organisation     ( variables for runtime )
+da_chan  equ   -32      l SMS2 main channed id
+da_wmvec equ   -36      l WMAN Vector
+da_sysv  equ   -40      l base of system variables
+da_mode  equ   -42      b display mode job is running in
+da_xlim  equ   -46      w screen display x-size
+da_ylim  equ   -44      w screen display y-size
+da_winsz equ   -50      l current window size x|y
+da_wwork equ   -54      l pointer to window working defintion
+da_ncell equ   -58      l maximum number of cells
+da_ncols equ   -60      w maximum number of columns
+da_nrows equ   -62      w maximum number of rows
+da_colwd equ   -64      w initial column width
+da_ixspx equ   -66      w max. string length for x-spacing
+da_cbx0  equ   -70      w x pos of top left hand of cell block
+da_cby0  equ   -68      w y pos ....
+da_cbx1  equ   -74      w x pos of bottom right of cell block (-1 for no block)
+da_cbx2  equ   -72      w y pos ....     (-1 for no block)
+da_cby1  equ   -72      w y pos ....
+da_ccell equ   -78      l x|y pos of current cell
+da_dupdt equ   -80      w =0 if update of display is allowed
+da_ordr  equ   -84      l calculation / input order
+da_saved equ   -88      w <>0 if file is already saved
+da_fword equ   -90      w global number format
+da_fjust equ   -92      w value justification in cell
+da_autoc equ   -94      w <>0 for auto calc on input
+da_dofmt equ   -96      w <>0 for no number formatting
+da_emptz equ   -98      w =0 for empty when zero
+da_sword equ   -100      w global string format
+da_amode equ   -102      w action mode for cells
+da_lform equ   -104      w the most recent format
+da_backu equ   -106      w set if backup of file is requested
+da_usedx equ   -110      w x pos of last used cell in grid
+da_usedy equ   -108      w y pos ....
+da_moncl equ   -114      l monitor cell number
+da_monid equ   -118      l monitor job id
+da_round equ   -122      w nr of decimal places to round
+da_esame equ   -124      w <>0 for empty if same
+da_prval equ   -130      f value of previous cell
+da_toolb equ   -132      w <>0 if toolbar is on
+da_cway  equ   -136      l sub-colour.w | colour.w
+*
+*        ( these split the runtime memory area )
+da_miobl equ   -168      l pointer to all nice menu items
+da_mspcl equ   -172      l pointer to spacing list (columns)
+da_mrowl equ   -176      l pointer to row list
+da_mcidx equ   -180      l pointer to column index objects
+da_mridx equ   -184      l pointer to row index objects
+da_ixstr equ   -188      l pointer to all index strings
+da_mstat equ   -192      l pointer to menu item statuses
+da_fblok equ   -196      l pointer to first block
+da_lblok equ   -200      l pointer to last block
+da_ffree equ   -204      l pointer to first free slot
+da_lfree equ   -208      l pointer to last free slot
+da_alias equ   -212      l pointer to first alias (or 0)
+*
+* (the above pointer can continue till -512)
+*
+da_buff  equ   -1000      general buffer space (grows upwards)
+da.buff  equ   512      length of buffer space
+*
+* string storage area
+*
+da_echf  equ   -1000-form.len    echo formula buffer
+da_echs  equ   da_echf-form.len  echo skeleton buffer
+da_echl  equ   da_echs-80     echo reference list
+da_var  equ   da_echl-60     variable name buffer
+da_helpd equ   da_var-fnam.len   help directory
+da_free  equ   da_helpd-20     20b free buffer space
+da_cinfo equ   da_free-16     16b cell info string
+da_fname equ   da_cinfo-fnam.len actual filename
+da_datad equ   da_fname-fnam.len current data default
+da_anbuf equ   da_datad-64     64b another buffer
+da_fextn equ   da_anbuf-10     10b file extension string
+da_fltd  equ   da_fextn-fnam.len transfer filter directory
+da_anbox equ   da_fltd-8     2*.l storge for another current box
+da_extbf equ   da_anbox-512     512 bytes external buffer storage
+da_extnf equ   da_extbf-36     36b external numeric file
+da_extsf equ   da_extnf-36     36b external string file
+da_prtd  equ   da_extsf-fnam.len printer filter directory
+da_oldf  equ   da_prtd-fnam.len  old filename for export etc.
+*
+*
+up_chid  equ   da_oldf-fnam.len  l cannel-id of flash-con
+sprt_on  equ   up_chid-4        b set if udate sprite on
+colm     equ   sprt_on-1       b main colour
+cols     equ   colm-1          b sub colour
+colb     equ   cols-1          b button colour
+cffui    equ   colb-1          b flash frequency
+v_expldel equ  cffui-1         b icon explain delay
+v_explcol equ  v_expldel-1     b icon explain colour
+v_automov equ  v_explcol-1     b auto-move cursor after entry:
+                               ; 0=off, 1=down, 2=right
+v_altbuff equ  v_automov-1     b flag if ALT was pressed
+v_toolitm equ  v_altbuff-80 20*l save area for toolbar Icon's
+v_password equ v_toolitm-4     l password or 0
+
+da_end  equ   4-v_password     top of data area (size)
+
+*        - window keys for spreadsheet
+*
+* window defintion keys
+mw_mxs   equ      496               main window xsize
+mw_mys   equ      166               main window ysize
+mw_lxs   equ      3*6               standard loose item xsize
+mw_lys   equ      10                standard loose item ysize
+mw_cxs   equ      6*6               command loose item xsize
+mw_fxs   equ      mw_mxs/4-20          window flag size
+mw_fxp   equ      4+2*(mw_lxs+4)    ;+54  window flag position (right of move/size)
+grnstp   equ      92                green stipples for flag
+
+*        - keys for dma
+*
+* Slot description
+slt_size equ      $00               w total number of free slots
+slt_prev equ      $02               l ptr to previous free slot
+slt_next equ      $06               l ptr to next free slot
+slt.len  equ      $20                 length of one slot in Bytes
+
+*
+* Block description
+blk_prev equ      $00               l ptr to previous block
+blk_next equ      $04               l ptr to next block
+blk.slts equ      $A0                 nr of slots in one block
+blk.len  equ      blk.slts*slt.len    allocation size for one block
+
+*
+* additional symbols
+dma.eol  equ     -$01                 end of linked list marker
+dma.xmem equ      64*1024             bytes to be free at least
+
+*
+* Spreadsheet file format
+sfh_init equ      $00               ; w initialisation code
+sfh.init equ      $4afc
+sfh_id   equ      $02               ; l application id
+sfh.id   equ      'SPRD'
+sfh_vers equ      $06               ; l version of file format
+sfh.v104 equ      '1.04'            ; current version
+sfh.v103 equ      '1.03'            ; intermediate version
+sfh.v102 equ      '1.02'            ; supported (older) version number
+sfh.v101 equ      '1.01'            ; may be this will work
+sfh.v100 equ      '1.00'            ; ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+sfh_pasw equ      $0a               ; l password longword
+sfh.nopas equ     $00000000         ; no password set
+sfh_cols equ      $0e               ; w nr of columns (or 0)
+sfh_rows equ      $10               ; w nr of rows (or 0)
+sfh.len  equ      $12               ; header length
+
+*
+* cell format
+sfc_cnr  equ      $00               ; l cell number (col|row)
+sfc_fwrd equ      $04               ; w cell format word
+sfc_real equ      $06               ; f floating point value
+sfc_form equ      $12               ; s formular standard string
+
+*
+* environment codes
+sfe_id   equ      $00               ; w environment code id
+sfe.id   equ      -1
+sfe_code equ      $02               ; w environment code word
+sfe.nfmt equ      $02               ;        global numeric format
+sfe.sfmt equ      $04               ;        global string format
+sfe.fmtn equ      $06               ;        format numbers on/off
+sfe.ordr equ      $08               ;        entry order
+sfe.auto equ      $0a               ;        auto calculation
+sfe.zero equ      $0c               ;        empty when zero
+sfe.same equ      $0e               ;        empty if same as above
+sfe_val  equ      $04               ; w environment value
+
+*
+* macro information
+sfm_id   equ      $00               ; w macro code id (=environment code id)
+sfm_code equ      $02               ; w negative macro number (-1 to -5)
+sfm_macr equ      $04               ; s macro string (max. 2+78 characters)
+
+  list

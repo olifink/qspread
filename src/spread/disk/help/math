@@ -1,0 +1,148 @@
+NUMERICAL FUNCTIONS
+-------------------
+
+  c : cell reference     eg. E5 (rel.) or [E5] (abs.)
+  x : a number, result of
+      function, or z     eg. -12.34
+  r : range as c:c       eg. B2:F6 or [B2]:[F6]
+  a : one character  eg. -
+
+
+abs(x)  results in the absolute value of x, ie. the value without
+        a possibleminus sign.
+          abs(5)    =    5
+          abs(-6)   =    6
+
+sgn(x)  returns -1 if value is negative, 0 for 0 and +1 for any positive
+        value.
+
+cos(x)  calculates the cosine of x (x is in radians)
+
+sin(x)  calculates the sine of x (x is in radians)
+
+tan(x)  calculates the tangent of x (x is in radians)
+
+cot(x)  calculates the cotangent of x (x is in radians)
+
+asin(x) calculates the value in radians, whose sine is x
+
+acos(x) calculates the value in radians, whose cosine is x
+
+atan(x) calculates the value in radians, whose tangent is x
+
+acot(x) calculates the value in radians, whose cotangent is x
+
+sqrt(x) calculates the square root of x; x must be positive!
+
+ln(x)   calculates the natural logarith of x (base e)
+
+log(x)  calculates the logarith of x (base 10)
+
+exp(x)  calculates e to the power of x
+
+rint(x) rounds x to the nearest integer
+          rint(0.3) =    0
+          rint(2.6) =    3
+
+int(x)  calculates the integer value of x
+          int(0.3)  =    0
+          int(2.6)  =    2
+
+col()   calculates the number of the columns where the forumla is found
+
+row()   calculates the number of the columns where the forumla is found
+
+sum(r)  calculates the sum in the range r
+          sum(a3:e4)     = 42      (just a value)
+
+avg(r)  calculates the average in the range r
+          avg(a3:e4)     = 4.2     (just a value)
+
+wdth(r) calculates the column width in the range r
+          wdth(a3:e4)    = 60
+          wdth(a1)       = 10
+
+len(c)  calculates the length of the string in the cell c
+          len(a3)        = 27      (or something else)
+
+cnta(r) calculates the number of cell in the range r
+
+cnt(r)  calculates the number of cell in the range r, that are
+        not equal to zero
+
+cntnum(r) calculates the number of cells which contain numerical contents
+        in the range r
+
+date()  date/time of today in seconds as offset from 01/01/61
+
+if(condition;true;false)
+        returns the value of Ÿtrue', if the result of the Ÿcondition'
+        is not zero, otherwise returns Ÿfalse'
+
+PI      results to the value of pi (=3.1415...)
+
+
+
+TEXT FUNCTIONS
+--------------
+
+rept$(a,x)      results to a textline, containing the character a,
+                repeated x-times.
+                  rept$(-,4)     = ----
+
+month$(x)       results to the name of the month x
+                  month$(4)      = April
+
+day$(x)         results to the day name of x
+                  day$(3)        = Wednesday
+
+digit$(x)       spells the digits of the integer part of x
+                  digit$(42)     = four two
+
+time$(x)        results in time of the date given as x (in seconds)
+                in the form of  hh:mm
+                time$ (date () ) returns the current time
+
+date$(x)        results in date of the date given as x (in seconds)
+                in the form of  dd/mm/yy
+                date$ (date () ) returns the current time
+
+
+NUMERICAL OPERATORS
+-------------------
+
+x + y           add x to y
+
+x - y           subtract y from x
+
+x * y           take x y-times
+
+x / y           divide x into y
+
+x ^ y           take x to the power of y
+
+( and )         open a new or close the most recent bracket level
+                (up to 16 levels are allowed)
+
+x + y %         add y-percent of x to x itself (other operators are
+                allowed of course)
+
+
+COMPARISON AND LOGICAL FUNCTIONS
+--------------------------------
+
+x = y           returns 1 (true) if x equals y, otherwise 0 (false)
+
+x <> y          returns 1 (true) if x is not equal to y, otherwise 0 (false)
+
+x > y           returns 1 (true) if x is greater than y, otherwise 0 (false)
+
+x < y           returns 1 (true) if x is less than y, otherwise 0 (false)
+
+x >= y          returns 1 (true) if x is greater than or equals y, otherwise 0
+
+x <= y          returns 1 (true) if x is less than or equals y, otherwise 0
+
+x & y           returns 1 if x and y are <>0
+
+x | y           returns 1 if x or y are <>0

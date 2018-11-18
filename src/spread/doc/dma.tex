@@ -1,0 +1,176 @@
+\t Dynamic Memory Area description
+
+\j The dynamic memory area (here: dma, not to be confused the method
+of direct memory access) consists of one assembler file, that may,
+in principle, be used by any other assembler program, provided that
+this program follows some simple roules:
+
+\f
+
+        - a6 is a pointer to the data area of the job
+        - da_fblok / da_lblok / da_ffree / da_lfree are all
+          offsets in the data area (a6) capable of holding one
+          long word each, allowing for run-time pointers
+
+\j If these definitions can not be achieved by the application,
+it should be no problem to change the sources accordingly. It is
+vital that four pointers are provided for the use of the dma.
+
+
+\t How to access the DMA
+
+\j The application wanting to use dynamic memory has, at first,
+to allocate one block of memory. This is all it has to deal with.
+In principle, it can then allocate and free memory as much as it
+likes. There is one routine to clean up the memory used by the
+dma if needed, but it is also possbile to end the job via the
+SMS.FRJB, which will release all memory allocated to this job.
+
+\f
+
+        \ob dma_frst \pn
+        Allocate first block of memory
+
+                Entry                   Exit
+        a6      ptr to data area        preserved
+
+        error codes: err.imem   not enough memory for first block
+        condition codes set
+
+\j This routine allocates the first memory block to be used by
+the dma management routines. It sets up the block to the format
+needed by the dma management and updates the long word pointers
+in the data area.
+
+\f
+
+        dma_aloc
+        Allocate space in the dma
+
+                Entry                   Exit
+        d1.l    nr. of bytes requested  preserved
+        a0                              base of area allocated
+        a6      ptr to data area        preserved
+
+        error codes: err.imem   not enough system memory left
+                     err.orng   req. size is bigger than one block
+        condition codes set
+
+\j This routine tries to allocate the requested space in the dynamic
+memory area, and clears it. It is not possible to allocate more space
+than slt.len*(blk.slts-1). In this case, err.orng will occur. This
+is a problem the programmer has to think about and adjust the symbols
+accordingly.
+
+\f
+
+        \ob dma_free \pn
+        Relink unused space to the dma
+
+                Entry                   Exit
+        a0      base of area to free    preserved
+        a6      ptr to data area        preserved
+
+        error codes: none (d0.l unchanged)
+        codition codes not set
+
+\j This routine is assumed not to fail. It releases space previously
+alloacted using the dma_aloc routine.
+
+\f
+
+        \ob dma_quit \pn
+        Release the complete dynamic memory area
+
+                Entry                   Exit
+        a6      ptr to data area        preserved
+
+        error codes: none (d0.l unchanged)
+        condition codes not set
+
+\j This routine releases all memory allocated to the dma. It is
+the final step if the application wants to clean up its memory or
+start new dynamic memory allocation. All runtime pointers area
+reset.
+
+
+\t Dynamic memory area concept
+
+\j The concept of dma contains the defintion of blocks and slots.
+Each block consists of a total of blk.slts slots. Each slots
+has a size of slt.len bytes. Thus giving a size of blk.len=
+blk.slts*slt.len bytes. A slot has to be at least $0c bytes long,
+to hold the internal data structures. So, the allocation is done
+in slots, i.e. even if only two bytes or so are required, one slot
+is allocated.
+
+There area two double linked lists in the dma. The one is holding
+the blocks together, the other is keeping track of the free slots.
+The first slot in each block is used to hold the pointers to the
+following and the previous block, or the end of list marker
+dma.eol for the last or first block respectivly. The remaining
+slots of the block (blk.slts-1) are free for use. The block
+list is held together by the long word pointers da_fblok and
+da_lblok which point to the first and last block in list.
+\f \mn
+
+
+        *
+        * Block desription
+        blk_prev equ  $00       l ptr to previous block
+        blk_next equ  $04       l ptr to next block
+        blk.slts equ  $40         nr of slots in one block
+        blk.len  equ  blk.slts * slt.len
+        dma.eol  equ -$01         end of linked list marker
+
+
+\j \pn Each slot starts with a word containing the total number of
+free slots following (incl. this one). This is followed again
+by two long word pointers to next and previous free slot accordingly.
+Again, the last and the first slot have the end of list marker
+at these positions. As the blocks, the free slots are held together
+by the long word pointers da_ffree / da_lfree in the data area.
+
+\f \mn
+
+
+        *
+        * Slot description
+        slt_size equ  $00       w total number of free slots
+        slt_prev equ  $02       l ptr to previous free slot
+        slt_next equ  $06       l ptr to next free slot
+        slt.len  equ  $10         length of one slot in bytes
+
+
+\j \pn The allocation of space in the dma works as follows. First the
+number of bytes to be allocated is increased by 2 bytes for internal
+reasons explained later. From this, the number of slots required
+is calculated. The management routine then enters the free slots
+list via da_ffree and then checks the number of slots currently
+available. There are three cases to be distinguished: firstly,
+there are to few slots to satisfy the needs, where the routine
+follows the list down to the next free slots. Secondly,
+there are exactly the number of slots required, where the
+previous and the following free slots are linked and the slot
+found is prepared for use. The third case is, that there are more
+slots available than actually required, where the previous slots
+are linked to the slots behind the number of slots required.
+If the allocation routine enounters the end of list pointer,
+it tries to expand the dynamic memory area by another block (which
+is linked in the block list, and than its free slots are linked to
+the free slots list) and starts scanning there. The allocation routine
+can therefore only allocate a total of blk.len-slt.len bytes.
+
+The area found is then cleared, and the first word of it contains
+the length of the area in slots. Then the address of the area +2 is
+return to the application. The number of slots is required in the
+dma_free routine, as it has to determine its size. Again, the area
+is cleared and linked to the start of the free space list. This
+ensures that the released free space is, if possible, used. This
+is more efficient as it minimises fragmentation.
+
+To clear the complete dynamic memory area, the management routine
+follows the block list to the end, and releases each block to the
+common heap again. Single block release is not supported, as it
+increases heap fragmentation more than it would help to get free
+space.

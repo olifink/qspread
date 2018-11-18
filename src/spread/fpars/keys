@@ -1,0 +1,91 @@
+* Formular Parser                                     18/12-91
+*        - keys for formular parser
+         nolist
+*                          formular item definitions
+fm.val   equ      $00      a floating point value
+fm.fn    equ      $02      a function name
+fm.var   equ      $04      a variable name
+
+*                          item delimiters / operation codes
+op.add   equ      '+'      ADD
+op.sub   equ      '-'      SUBtract
+op.mul   equ      '*'      MULtiply
+op.div   equ      '/'      DIVide
+op.pow   equ      '^'      power
+op.perc  equ      '%'      precentage
+cp.and   equ      '&'      logical and
+cp.or    equ      '|'      logical or
+cp.not   equ      '~'      logical not
+cp.eq    equ      '='      equal
+cp.gt    equ      '>'      greater than
+cp.lt    equ      '<'      less than
+cp.ge    equ      '>='     greater or equal
+cp.le    equ      '<='     lower or equal
+cp.ne    equ      '<>'     not equal
+cpc.ne   equ      $01      byte code for ne
+cpc.ge   equ      $02      byte code for ge
+cpc.le   equ      $03      byte code for le
+qa.and   equ      -1       my qa comparison operators
+qa.or    equ      -2
+qa.not   equ      -3
+qa.eq    equ      -4
+qa.gt    equ      -5
+qa.lt    equ      -6
+qa.ge    equ      -7
+qa.le    equ      -8
+qa.ne    equ      -9
+cc.open  equ      '('      opening braces
+cc.clos  equ      ')'      closing braces
+cc.end   equ      $1B      end of function
+cc.end1  equ      ','
+cc.end2  equ      ';'
+
+*                          internal function table layout
+ift_name equ      $00      s internal function name
+ift.end  equ      -1
+ift_qaop equ      $06      w qa operation code
+ift.len  equ      $08        length of one entry
+
+*                          external function table layout
+xft_name equ      $00      s external function name
+xft.end  equ      -1         end of table marker
+xft_args equ      $08      w nr. of arguments
+xft_fn   equ      $0a      l rel. ptr to function code
+xft.len  equ      $0e
+
+*
+* level information list
+lv_opcnt equ      $00      w operation counter
+lv_oppnd equ      $02      b set if last operation was closing bracket
+lv_opneg equ      $03      b <>0 if negation is pending
+lv_fn    equ      $04      l ptr to function code or 0
+lv.len   equ      $08
+
+
+*                          parser data area organisation
+pd_fstr  equ      $00      l ptr to formula string
+pd_stak  equ      $04      l ptr to value stack
+pd_ppop  equ      $08      l ptr to pending operations list
+pd_plev  equ      $0c      l ptr to level information list
+pd_pfn   equ      $10      l ptr to external functions list
+pd_var   equ      $14      l ptr to variable evaluation procedure
+pd_levc  equ      $18      w level counter
+pd_ppos  equ      $1a      w parsing position
+pd_save  equ      $1c      b holds the byte replaced by cc.end
+pd.plen  equ      $20      length of parser ptr area
+
+pd_buff  equ      pd.plen           item buffer space
+pd.buff  equ      32
+pd_popl  equ      pd_buff+pd.buff   operations list
+pd.popl  equ      32
+pd_levl  equ      pd_popl+pd.popl   level info list
+pd.nlev  equ      16                max. number of levels
+pd.levl  equ      pd.nlev*lv.len
+pd_mon   equ      pd_levl+pd.levl   parser monitor area
+pd.mon   equ      32
+pd.len   equ      pd_mon+pd.mon     length of data area
+
+pma_ch   equ      pd_mon  l monitor channel ID
+pma_buff equ      pd_mon+4  monitor buffer
+
+         list

@@ -1,0 +1,56 @@
+                           QSPREAD (1.11) HELP
+                          =====================
+
+Numeric functions:
+------------------
+  c : cell reference
+  x : a number, or c
+  r : range as c:c
+
+           abs(x)          absolute value
+           cos(x)          cosine
+           sin(x)          sine
+           tan(x)          tangent
+           cot(x)          cotangent
+           asin(x)         arcsine
+           acos(x)         arccosine
+           atan(x)         arctangens
+           acot(x)         arccotangens
+           sqrt(x)         square root
+           ln(x)           logarithm (natural)
+           log(x)          logarithm base 10
+           exp(x)          exponential
+           rint(x)         round to nearest integer
+           int(x)          truncate to integer
+
+           col()           current cells column (1..)
+           row()           current cells row (1..)
+           sum(r)          sum of the range r
+           avg(r)          average of the range r (=sum(r)/cnta(r))
+           wdth(r)         width of the columns over r
+           len(c)          length of text in cell c
+           cnta(r)         count all cells in r
+           cnt(r)          count all cells <>0 in r
+
+Constants: PI              the value of pi (3.1415..)
+
+Textfunctions:
+--------------
+  a : one character
+
+           rept$(a,x)      repeat the character a x-times
+           month$(x)       name of the month x (1=January...)
+           day$(x)         name of the day x (1=Monday...)
+
+
+Numeric operators:
+------------------
+
+           +               add
+           -               subtract
+           *               multiply, times
+           /               divide
+           ^               raise to power
+           (,)             calculation level (up to 16)
+
+           %               percentage

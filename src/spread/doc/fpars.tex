@@ -1,0 +1,222 @@
+\t Formular parser documentation
+
+\j The formular parser provides a way to get values out of a
+formular string, allowing for variables and user supplied functions.
+The working of the parser is definied here, as well as the routines
+is uses and the data structures it is working on.
+In order to allow a rather high degree of flexibility, at a reasonable
+amount of overhead code, the parser has to have access to the following
+resourses, to be supplied by the calling program:
+
+\f
+     - pointer to formular string
+     - pointer to result area
+     - pointer to function table list
+     - address of variable evaluation procedure
+
+\j The parser itself has the following internal structures:
+
+\f
+     - table of functions
+     - value stack
+     - pending operations list
+     - pending operations count
+
+
+
+\t Working of the parser
+
+\j The parser scans the formular string from the start, trying to
+get one item. This item is then checked if it is a number, in which
+case it can not start with character. For this decimal number, the
+QDOS/SMS2 conversion routine is called to get a floating point value. This
+may fail. The value, when found, gets onto the value stack.
+The delimiting character of the item is then checked.
+If it is end of line, the work is done, and the result is left on
+top of the value (RI) stack. Otherwise the operations
+code will be placed in the operation list and then pending operations
+counter will be increased. The scan then continues for the next item.
+
+There are some special cases, in which the parser has to react in a
+slightly different way. If there are any immediate operators pending,
+these will be carried out first, as their name implies.
+
+The other kind special cases are the braces. These will, depending
+on whether they were opening or closing, raise or lower the calculation
+level the parser is working in, so that all expressions imbedded in
+a pair or braces will be carried out first. Any non-matching number
+of braces will lead to errors, too.
+
+
+
+\t Formular string defintion
+
+\j The formular string is a standard QDOS/SMS2 string. Beware: There
+has to be space for one additional character, placed at the end of the
+string! The parser tries to
+find out the strings meaning (interpret it).
+The string consists of one or more
+items, which may be one of the following types:
+
+\f
+          fm.val    equ  $00  a floating point value
+          fm.fn     equ  $02  a function name
+          fm.var    equ  $04  a variable name
+
+
+\j Each item of the string has to be delimited by a special character,
+that has a meaning of its own to the parser. They are here
+referred to as operations. The following standard operations are
+supported, any others will lead to a parsing error. Imbedded spaces
+are not treated as delimiters. There is another type of delimiters,
+called control characters. These are the opening and closing braces,
+as well as the end-of-function marker the parser itself places at its
+end for simplicity reasons.
+
+\f
+          op.add    equ  '+'  ADD
+          op.sub    equ  '-'  SUBstract
+          op.mul    equ  '*'  MULtiply
+          op.div    equ  '/'  DIVide
+          op.pow    equ  '^'  power
+          cc.open   equ  '('  opening braces
+          cc.clos   equ  ')'  closing braces
+          cc.end    equ  $00  end of function
+
+
+\j By definition, all operations have to be followed by another item.
+All control characters are treated a in a special way. Operaters and
+control characters also invoke special internal routines and are, too,
+items of its own.
+
+There is one routine which allows for getting a standard item. It is
+defined as follows:
+
+\f
+
+     Get Item from formular string
+     prs_item
+
+          Entry                         Exit
+     A0   pointer to formular string    preserved
+     A1   item buffer                   preserved
+     D1.w parsing position              updated
+     D2.b                               delimiter code
+
+     D0 error code set
+
+
+\j If an error occurs during scanning for this item, D1.w will be
+updated to the position where the error occured.
+
+
+\t Function table
+
+\j A function in this parsing routine is identified by its name, followed
+by an opening bracket. There are two types of functions, internal and
+external. Internal functions are those originally supported by the
+QDOS/SMS2 arithmetic package (like sin, cos, tan, exp etc.). All these
+functions take one argument, that has to be enclosed in braces.
+The internal function table looks like this
+
+\f
+         *                          internal function table layout
+         ift_name equ      $00      s internal function name
+         ift.end  equ      -1
+         ift_qaop equ      $06      w qa operation code
+         ift.len  equ      $08        length of one entry
+
+         fn_intern
+                  dc.w     3,'abs ',qa.abs
+                  dc.w     3,'cos ',qa.cos
+                  dc.w     3,'sin ',qa.sin
+                  dc.w     3,'tan ',qa.tan
+                  dc.w     3,'cot ',qa.cot
+                  dc.w     4,'asin',qa.asin
+                  dc.w     4,'acos',qa.acos
+                  dc.w     4,'atan',qa.atan
+                  dc.w     4,'acot',qa.acot
+                  dc.w     4,'sqrt',qa.sqrt
+                  dc.w     2,'ln  ',qa.ln
+                  dc.w     3,'log ',qa.log10
+                  dc.w     3,'exp ',qa.exp
+
+
+\j The external functions table allows the programmer to easily extend
+the list of functions for the special purposes of the application.
+The function name is defined as a standard string in the external
+function table, and may be up to six characters in length, which should
+satisfy most needs.
+
+The external function table should look like this:
+
+\f
+         *                          external function table layout
+         xft_name equ      $00      s external function name
+         xft.end  equ      -1         end of table marker
+         xft_args equ      $08      w nr. of arguments
+         xft_fn   equ      $0a      l rel. ptr to function code
+         xft.len  equ      $0e
+
+
+\j At present stage, the number of arguments is restriced to 1. If the
+number of arguments is given as 0, the external code will be called in
+a slightly different way: the expression (or whatever) given between
+the braces is ignored by the parser and passed on to the external
+function routine, which then has to deal with it.
+
+The external routines are called by the parser with the
+following arguments. A routine which expects an argument, will find it
+on top of the stack. This can them be replaced by the value that
+should be returned to the parser as the result. Other routines have
+to adjust the stack and place the new value on top of it.
+The routine has
+to set the D0 register to the error code state, when it was called
+with a value out of range or others that would lead to errors.
+
+\f
+
+     User supplied function code
+
+          Entry                         Exit
+     A0  (ptr to formular)              ???
+     A1   top of stack                  updated
+     D1  (length of arg.-string)        ???
+     D2  (pos. of arg.-string)          ???
+
+     Error codes: must be set!
+
+
+\j As most of the external function have to carry out their own
+arthmetic calculations, a simple way is provided to access the
+arthmetic package:
+
+\f
+
+     Execute an arthmetic function
+     (prs_doqa)
+
+          Entry                         Exit
+     A1   top stack                     updated
+     D0   operation code                error (err.iexp)
+
+
+
+\t Variable evaluation
+
+\j In order to allow a high degree of flexibility
+in variable defintion, such as
+name and structure of the variable area, the parser has to have
+access to a routine, that gets the actual value for a variable with
+a given name. The only limitation is, that this name has to start
+with a letter and may not contain any of the delimition characters
+described above. The error code has to be set as well, if the given
+variable name has no definied values.
+
+\f
+
+     Variable evaluation routine
+
+          Entry                    Exit
+     A1   address of variable name preserved (now result)
+     D0                            error code

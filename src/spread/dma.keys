@@ -1,0 +1,23 @@
+* Spreadsheet                                         07/01-92
+*        - keys for dma
+         nolist
+
+*
+* Slot description
+slt_size equ      $00               w total number of free slots
+slt_prev equ      $02               l ptr to previous free slot
+slt_next equ      $06               l ptr to next free slot
+slt.len  equ      $20                 length of one slot in Bytes
+
+*
+* Block description
+blk_prev equ      $00               l ptr to previous block
+blk_next equ      $04               l ptr to next block
+blk.slts equ      $A0                 nr of slots in one block
+blk.len  equ      blk.slts*slt.len    allocation size for one block
+
+*
+* additional symbols
+dma.eol  equ     -$01                 end of linked list marker
+dma.xmem equ      64*1024             bytes to be free at least
+         list

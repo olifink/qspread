@@ -1,0 +1,42 @@
+*
+* Spreadsheet file format
+         nolist
+sfh_init equ      $00               ; w initialisation code
+sfh.init equ      $4afc
+sfh_id   equ      $02               ; l application id
+sfh.id   equ      'SPRD'
+sfh_vers equ      $06               ; l version of file format
+sfh.vers equ      '1.02'
+sfh_cols equ      $0a               ; w nr of columns (or 0)
+sfh_rows equ      $0c               ; w nr of rows (or 0)
+sfh.len  equ      $0e               ; header length
+
+*
+* cell format
+sfc_cnr  equ      $00               ; l cell number (col|row)
+sfc_fwrd equ      $04               ; w cell format word
+sfc_real equ      $06               ; f floating point value
+sfc_form equ      $12               ; s formular standard string
+
+*
+* environment codes
+sfe_id   equ      $00               ; w environment code id
+sfe.id   equ      -1
+sfe_code equ      $02               ; w environment code word
+sfe.nfmt equ      $02               ;        global numeric format
+sfe.sfmt equ      $04               ;        global string format
+sfe.fmtn equ      $06               ;        format numbers on/off
+sfe.ordr equ      $08               ;        entry order
+sfe.auto equ      $0a               ;        auto calculation
+sfe.zero equ      $0c               ;        empty when zero
+sfe.same equ      $0e               ;        empty if same as above
+sfe_val  equ      $04               ; w environment value
+
+*
+* macro information
+sfm_id   equ      $00               ; w macro code id (=environment code id)
+sfm_code equ      $02               ; w negative macro number (-1 to -5)
+sfm_macr equ      $04               ; s macro string (max. 2+78 characters)
+
+
+         list

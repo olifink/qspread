@@ -1,0 +1,120 @@
+CF4 MOVE WINDOW
+---------------
+In the top left hand edge of the window is an icon of two overlapping
+squares. This is the window move command, that allows you to move the
+window, as it is, to a different screen position. When you HIT this
+picture (ie. press the left mouse button, or the SPACE key), the
+pointer will take it's form, and you can now move this symbol around.
+If you HIT a second time, the window is moved to this position (if
+there is enough screen space left to move it actually there).
+
+
+CF3 WINDOW RESIZE
+-----------------
+The second window related command, that is situated right of the move
+command icon and looks like two joined squares, is the window resize
+command. If you move the resize pointer (after an initial HIT) away
+from the window (ie. to the left and/or up) the window will be
+enlarged; if you move the pointer towards the window (ie. right and/or
+down) the window will shrink. Needless to say that there is no way of
+making a window bigger than the actual screen size, and only that small
+that all other windows fir inside. Please note: to bring the window
+into it's full-sizes state, simple perform a DO (right mouse button, or
+ENTER) on the resize item.
+
+
+CF1 PUT APPLICATION TO SLEEP
+----------------------------
+The last window command looks like a visualised sort of comic-like
+sleep, and that is exactly what it does: it put's the program to sleep.
+Now what the hell does that mean, again? Well, it temporarily removes
+the window from the screen, replacing it by a small button, which will
+hurt nobody (in case you have QPac2, the button is put into the frame).
+If you decide you like to continue working with the program, just DO
+the button, and there is your window again, as you left it.
+
+
+                                COMMANDS
+                                --------
+
+
+F1 HELP
+-------
+The Help command (F1) provides you with instant information. You are
+presented with another menu, which allows you to choose the one topic
+of interest for you. Of course, the help files have to be installed on
+your system.
+
+
+F2 FILE
+-------
+The File command (F2) collects all commands that are related to file or
+printer operations. This is where you can create a new sheet as well as
+change parameters for the printer.
+
+
+F3 GRID
+-------
+The Grid command (F3) contains all commands, that affect the sheet as a
+whole. This is where you also find the Quit command, to finally leave
+the program.
+
+
+F4 CELL
+-------
+The Cell command (F4) is responsible for all commands dealing with the
+changing of the current cell or current range.
+
+
+F5 STATUS
+---------
+The Status command (F5) allows to fine-tune the QSpread working
+environment, which will obviously affect most other operations.
+
+
+F6 FN's
+-------
+The Functions or Fn's menu (F6) contains a list short list of formulae
+often needed. It's a sort of a scrap for these in case you are quite as
+lazy as I am, and reluctant to entering the same thing over and over
+again.
+
+
+F8 ALL
+------
+The All command (F8) is a special short command, that determines if
+just one cell or all cells in a selected range are affected by an
+entry.
+
+
+F9 AGAIN
+--------
+This function repeats the lastest search as determined in the find
+function of the Grid Menu.
+
+
+(+) SUM
+-------
+There is another curious looking command (scientists will certain
+recognize it as the symbol for the sum). It is a single function (ie.
+no menu), that contains the sum-formula, which will be explained later
+on.
+
+
+(_) LINE
+--------
+Furthermore there is the line-function (right to the sum-function, and
+can be actived by the underscore keypress), which brings a dividing
+line of the length of the current block into a cell... but as I said,
+more of this in later section.
+
+
+F10 GO TO
+---------
+On the right and side of this line is the Goto command (F10). It will
+normally show the name of the current range. Furthermore this is where,
+during time consuming tasks, the cell where QSpread is currently
+working on, will be shown, to keep you informed. When you execute this
+command item, you can enter the name of the cell you want to see next
+in the top left corner of the grid. This allows you to move quite fast
+over the whole sheet.

@@ -1,0 +1,56 @@
+                           QSPREAD (1.11) HILFE
+                          ======================
+
+Numerische Funktionen:
+----------------------
+  z : Zellreferenz
+  x : eine Zahl, oder z
+  r : Bereich als z:z
+
+           abs(x)          Absolutwert
+           cos(x)          Cosinus
+           sin(x)          Sinus
+           tan(x)          Tangens
+           cot(x)          Cotangens
+           asin(x)         Arc-Sinus
+           acos(x)         Arc-Cosinus
+           atan(x)         Arc-Tangens
+           acot(x)         Arc-Cotangens
+           sqrt(x)         Quadratwurzel
+           ln(x)           nat‡rlicher Logarithmus
+           log(x)          10er-Logarithmus
+           exp(x)          e hoch x
+           rint(x)         auf n€chste Ganzzahl runden
+           int(x)          Nachkommastellen abschneiden
+
+           col()           aktuelle Spalte (1..)
+           row()           aktuelle Zeile (1..)
+           sum(r)          Summe des Bereichs r
+           avg(r)          Durchschnitt des Bereichs r (=sum(r)/cnta(r))
+           wdth(r)         Breite der Spalten in r
+           len(c)          L€nge des Textes in Zelle c
+           cnta(r)         Anzahl der Zellen in r
+           cnt(r)          Anzahl der Zelle <>0 in r
+
+Konstanten:
+           PI              die Zahl PI (3.1415..)
+
+Textfunktionen
+--------------
+  c         : ein Zeichen
+
+           rept$(c,x)      wiederhole das Zeichen (c) x-mal
+           month$(x)       Monatsname von x (1=Januar etc.)
+           day$(x)         Wochentagsname von x (1=Montag etc.)
+
+
+Numerische Operationen:
+-----------------------
+           +               addiere
+           -               subtrahiere
+           *               multipliziere
+           /               dividiere
+           ^               potenziere
+           (,)             Klammerebenen (max. 16)
+
+           %              Prozentrechnung
