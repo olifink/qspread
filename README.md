@@ -5,8 +5,7 @@ and distributed as commercial software by Jochen Merz Software (JMS), who also l
 with Bernd Reinhard nurtoured it up to version 4.04. Unfortunately the code for the original 
 versions doesn't exist anymore, but it realtivly easy to spot the additions made by their (more professional) coding.
 
-The software is now freely available as Public Domain and the sources are made available here 
-under the MIT License.
+The software is now free and the sources are made available here under the MIT License.
 
 A big thanks to [Marcel Kilgus](https://www.kilgus.net/) who took over the content from Jochen
 and for helping to find the current sources and agreeing to open sourcing them.
